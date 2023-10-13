@@ -3,33 +3,52 @@ import type { User, UserLogin, UserWithoutId } from './type';
 export const registrationFetch = async (
   obj: UserWithoutId,
 ): Promise<{ message: string; user: User }> => {
-  const data = await (
-    await fetch('/auth/reg', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(obj),
-    })
-  ).json();
+  const res = await fetch('/api/auth/reg', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(obj),
+  });
+
+  if (!res.ok) {
+    const { message } = await res.json();
+    throw message;
+  }
+  const data = await res.json();
+  console.log(data);
   return data;
 };
 
 export const loginFetch = async (obj: UserLogin): Promise<{ message: string; user: User }> => {
-  const data = await (
-    await fetch('/auth/login', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(obj),
-    })
-  ).json();
+  const res = await fetch('/api/auth/login', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(obj),
+  });
+
+  if (!res.ok) {
+    const { message } = await res.json();
+    throw message;
+  }
+  const data = await res.json();
   return data;
 };
 
 export const logoutFetch = async (): Promise<{ message: string }> => {
-  const data = await (await fetch('/auth/logout')).json();
+  const res = await fetch('/api/auth/logout');
+  if (!res.ok) {
+    const { message } = await res.json();
+    throw message;
+  }
+  const data = await res.json();
   return data;
 };
 
-export const verificationFetch = async (): Promise<{ message: string }> => {
-  const data = await (await fetch('/auth/logout')).json();
+export const verificationFetch = async (): Promise<{ message: string; user: User }> => {
+  const res = await fetch('/api/auth/verification');
+  if (!res.ok) {
+    const { message } = await res.json();
+    throw message;
+  }
+  const data = await res.json();
   return data;
 };

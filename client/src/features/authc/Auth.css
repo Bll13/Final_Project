@@ -1,0 +1,20 @@
+.formaRegistration {
+  width: 100vw;
+  height: 100vh;
+}
+ /* .inputFormaRegistation {
+  display: flex;
+} */
+.inputRega {
+  display: flex;
+}
+.buttonRega {
+  display: flex;
+}
+.forRegistration{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    margin-top: 40%;
+
+}
