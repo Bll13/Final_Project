@@ -1,6 +1,6 @@
 .mainPage {
   background-image: url('https://images.wallpaperscraft.ru/image/single/les_derevia_tuman_124708_1920x1080.jpg') !important;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background: url(./images/mainbg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -12,4 +12,12 @@
   justify-content: flex-end;
 }
 
+.textInfo {
+  height: 100vh;
+}
 
+.wordSpace {
+  word-spacing: 0.4rem;
+  width: 1000px;
+  text-align: justify;
+}
