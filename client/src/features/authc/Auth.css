@@ -18,3 +18,9 @@
     margin-top: 40%;
 
 }
+body{
+  background-color: rgb(246, 252, 247);
+}
+.loginForm{
+  height: 100vh;
+}
