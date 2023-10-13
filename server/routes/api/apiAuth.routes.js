@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
-const { User, Role, Enity, Car } = require('../../db/models')
+const { User, Role, Entity, Car } = require('../../db/models')
 
 router.post('/reg', async (req, res) => {
   try {
@@ -44,15 +44,17 @@ router.post('/reg', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { password, email } = req.body
+    console.log(password, email, '------123----')
     if (password && email) {
       let user = await User.findOne({ where: { email } })
+      console.log(user)
       if (user && (await bcrypt.compare(password, user.password))) {
         user = await User.findOne({
           where: { email },
           exclude: ['password', 'createdAt', 'updatedAt'],
           include: [
             { model: Role, exclude: ['createdAt', 'updatedAt'] },
-            { model: Enity, exclude: ['createdAt', 'updatedAt'] },
+            { model: Entity, exclude: ['createdAt', 'updatedAt'] },
             { model: Car, exclude: ['createdAt', 'updatedAt'] },
           ],
         })

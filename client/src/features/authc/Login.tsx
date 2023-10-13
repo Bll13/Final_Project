@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from '../../Store/store';
+import { useAppDispatch } from '../../store/store';
+import { loginThunk } from './authSlice';
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch=useAppDispatch()
-  function loginUser():void{
-
+  const dispatch = useAppDispatch();
+  function loginUser(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    dispatch(loginThunk({ email, password }));
   }
   return (
     <div>
