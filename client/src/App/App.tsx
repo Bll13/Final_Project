@@ -1,8 +1,10 @@
 import React from 'react';
 
 import './App.css';
+
 import { Route, Routes } from 'react-router-dom';
 import Registration from '../features/authc/Registration';
+
 import Login from '../features/authc/Login';
 
 function App(): JSX.Element {

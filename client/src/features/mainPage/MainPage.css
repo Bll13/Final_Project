@@ -1,0 +1,15 @@
+.mainPage {
+  background-image: url('https://images.wallpaperscraft.ru/image/single/les_derevia_tuman_124708_1920x1080.jpg') !important;
+  height: 100%;
+  width: 100%;
+  background: url(./images/mainbg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.jopa {
+  justify-content: flex-end;
+}
+
+
