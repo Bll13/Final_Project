@@ -3,7 +3,6 @@ const express = require('express')
 const path = require('path')
 const session = require('express-session')
 
-// const getUser = require('../middleware/getUser')
 const sessionConfig = require('./sessionsConfig')
 
 const config = (app) => {
@@ -13,7 +12,6 @@ const config = (app) => {
 
   app.use(cookieParser())
   app.use(session(sessionConfig))
-  
 }
 
 module.exports = config

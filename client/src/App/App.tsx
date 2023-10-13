@@ -1,12 +1,16 @@
 import React from 'react';
 
 import './App.css';
-import MainPage from '../features/mainPage/MainPage';
+import { Route, Routes } from 'react-router-dom';
+import Registration from '../features/authc/Registration';
 
 function App(): JSX.Element {
-  return <div className="App">
-    <MainPage/>
-    </div>;
+  return (
+    <Routes>
+      <Route path='/auth' element={<Registration/>}>
+      </Route>
+    </Routes>
+  )
 }
 
 export default App;

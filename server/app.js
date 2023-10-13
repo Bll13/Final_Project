@@ -11,5 +11,4 @@ const PORT = 3000
 config(app)
 app.use('/', indexRouter)
 
-
 app.listen(PORT, () => console.log(`Сервер работает за ${PORT} рублей`))
