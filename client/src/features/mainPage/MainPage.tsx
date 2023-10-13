@@ -6,7 +6,7 @@ function MainPage():JSX.Element {
 
 
   return (
-    <div className='mainPage'>
+    <div>
       mainPage
     </div>
   )
