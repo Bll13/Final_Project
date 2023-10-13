@@ -48,5 +48,5 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'CardBuy',
     },
   )
-  return cardBuy
+  return CardBuy
 }

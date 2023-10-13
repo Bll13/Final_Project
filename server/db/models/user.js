@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       rating: {
         allowNull: false,
         type: DataTypes.INTEGER,
+        defaultValue: 0,
       },
       phoneNumber: {
         allowNull: false,
