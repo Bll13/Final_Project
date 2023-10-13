@@ -1,17 +1,59 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 
-import { Dialog, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { Popover, Transition } from '@headlessui/react';
+import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+
+import {
+  ArrowPathIcon,
+  ChartPieIcon,
+  CursorArrowRaysIcon,
+  FingerPrintIcon,
+  SquaresPlusIcon,
+} from '@heroicons/react/24/outline';
 import './MainPage.css';
 
 function MainPage(): JSX.Element {
-  const [open, setOpen] = useState(true);
-
-  const links = [{ name: 'Войти', href: '' }];
+  const links = [{ name: 'Войти', href: '/auth' }];
+  const solutions = [
+    {
+      name: 'Analytics',
+      description: 'Get a better understanding of your traffic',
+      href: '#',
+      icon: ChartPieIcon,
+    },
+    {
+      name: 'Engagement',
+      description: 'Speak directly to your customers',
+      href: '#',
+      icon: CursorArrowRaysIcon,
+    },
+    {
+      name: 'Security',
+      description: "Your customers' data will be safe and secure",
+      href: '#',
+      icon: FingerPrintIcon,
+    },
+    {
+      name: 'Integrations',
+      description: 'Connect with third-party tools',
+      href: '#',
+      icon: SquaresPlusIcon,
+    },
+    {
+      name: 'Automations',
+      description: 'Build strategic funnels that will convert',
+      href: '#',
+      icon: ArrowPathIcon,
+    },
+  ];
+  const callsToAction = [
+    { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
+    { name: 'Contact sales', href: '#', icon: PhoneIcon },
+  ];
 
   return (
     <div className="mainPage">
-      <div className="relative isolate overflow-hidden  py-24 sm:py-32">
+      <div className="textInfo relative isolate overflow-hidden  py-24 sm:py-32">
         <div
           className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
           aria-hidden="true"
@@ -38,6 +80,65 @@ function MainPage(): JSX.Element {
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="jopa grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex rg:gap-x-10">
+            <Popover className="relative">
+              <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-200">
+                <span>Информация</span>
+                <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
+              </Popover.Button>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
+                  <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                    <div className="p-4">
+                      {solutions.map((item) => (
+                        <div
+                          key={item.name}
+                          className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
+                        >
+                          <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            <item.icon
+                              className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          <div>
+                            <a href={item.href} className="font-semibold text-gray-900">
+                              {item.name}
+                              <span className="absolute inset-0" />
+                            </a>
+                            <p className="mt-1 text-gray-600">{item.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                      {callsToAction.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100"
+                        >
+                          <item.icon
+                            className="h-5 w-5 flex-none text-gray-400"
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </Popover.Panel>
+              </Transition>
+            </Popover>
+
             {links.map((link) => (
               <a key={link.name} href={link.href}>
                 {link.name} <span aria-hidden="true">&rarr;</span>
@@ -45,11 +146,11 @@ function MainPage(): JSX.Element {
             ))}
           </div>
 
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Ceep Clean</h2>
-            <p className="mt-6 text-lg leading-8 text-gray-200">
+          <div className="mx-auto max-w-2xl lg:mx-0 ">
+            <h2 className="text-4x1 font-bold tracking-tight text-white sm:text-6xl ">Ceep Clean</h2>
+            <p className="wordSpace mt-40 text-lg leading-9 text-gray-200 sm:text-3xl">
               Правильная утилизация отходов является неотъемлемой частью нашей ответственности перед
-              природой и будущим поколениям. Она помогает минимизировать загрязнение окружающей
+              природой и будущим поколением. Она помогает минимизировать загрязнение окружающей
               среды, сохранять природные ресурсы и создавать более здоровую планету для всех.
               Давайте вместе принимать меры и делать свой вклад в сохранение экологии, начиная с
               правильной утилизации отходов.
@@ -57,71 +158,6 @@ function MainPage(): JSX.Element {
           </div>
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none"></div>
         </div>
-        <Transition.Root show={open} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={setOpen}>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-in-out duration-500"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in-out duration-500"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-            </Transition.Child>
-
-            <div className="fixed inset-0 overflow-hidden">
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="transform transition ease-in-out duration-500 sm:duration-700"
-                    enterFrom="translate-x-full"
-                    enterTo="translate-x-0"
-                    leave="transform transition ease-in-out duration-500 sm:duration-700"
-                    leaveFrom="translate-x-0"
-                    leaveTo="translate-x-full"
-                  >
-                    <Dialog.Panel className="pointer-events-auto relative w-screen max-w-md">
-                      <Transition.Child
-                        as={Fragment}
-                        enter="ease-in-out duration-500"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in-out duration-500"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
-                          <button
-                            type="button"
-                            className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                            onClick={() => setOpen(false)}
-                          >
-                            <span className="absolute -inset-2.5" />
-                            <span className="sr-only">Close panel</span>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                          </button>
-                        </div>
-                      </Transition.Child>
-                      <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                        <div className="px-4 sm:px-6">
-                          <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                            Panel title
-                          </Dialog.Title>
-                        </div>
-                        <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                          {'/* Your content */'}
-                        </div>
-                      </div>
-                    </Dialog.Panel>
-                  </Transition.Child>
-                </div>
-              </div>
-            </div>
-          </Dialog>
-        </Transition.Root>
       </div>
     </div>
   );
