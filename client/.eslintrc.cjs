@@ -51,5 +51,9 @@ module.exports = {
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off'
+<<<<<<< HEAD
+=======
+
+>>>>>>> b95d1ef7aea9b47d4cf100c56059a1a08791da88
   },
 };
