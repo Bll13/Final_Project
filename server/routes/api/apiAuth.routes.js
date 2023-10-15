@@ -5,6 +5,7 @@ const { User, Role, Entity, Car } = require('../../db/models')
 router.post('/reg', async (req, res) => {
   try {
     const { name, password, email, phoneNumber, idRole, avatar } = req.body
+    console.log( name, password, email, phoneNumber, idRole, avatar );
     if (name && password && email && phoneNumber && idRole) {
       const user = await User.findOne({ where: { email } })
       if (!user) {
