@@ -39,6 +39,7 @@ module.exports = {
         },
         {
           adres: 'zdes',
+          adresCod: '49.87493311838197,31.30801671131229',
           userId: 3,
           price: 100000,
           ves: 100000,
@@ -49,6 +50,7 @@ module.exports = {
         },
         {
           adres: 'zdes9',
+          adresCod: '51.87493311838197,32.30801671131229',
           userId: 3,
           price: 1000000,
           ves: 1000000,
@@ -59,6 +61,7 @@ module.exports = {
         },
         {
           adres: 'tama',
+          adresCod: '51.17493311838197,32.20801671131229',
           userId: 1,
           price: 10000000,
           ves: 1000000,
@@ -69,6 +72,7 @@ module.exports = {
         },
         {
           adres: 'svalka',
+          adresCod: '53.17493311838197,30.90801671131229',
           userId: 1,
           price: 20000000,
           ves: 2000000,
@@ -78,7 +82,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          adres: 'svalka',
+          adres: 'svalk0',
+          adresCod: '50.87493311838197,31.902301671131229',
           userId: 1,
           price: 20000000,
           ves: 2000000,
@@ -89,6 +94,7 @@ module.exports = {
         },
         {
           adres: 'pomoika',
+          adresCod: '52.07493311838197,28.902301671131229',
           userId: 1,
           price: 30000000,
           ves: 3000000,
