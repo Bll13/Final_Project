@@ -1,6 +1,17 @@
-export type Maps = {
+export type MapsEntity = {
+  id: number;
   coordinates: number[];
-  content:string
+  content: string;
+};
+export type MapsCardBuy = {
+  id: number;
+  coordinates: number[];
+  content: string;
+};
+export type Post = {
+  adresCod: string;
+  adres: string;
+  price: number;
 };
 
-export type State = { maps: Maps[]; errMaps: string| undefined };
+export type State = { enti: MapsEntity[]; card: MapsCardBuy[]; errMaps: string | undefined };

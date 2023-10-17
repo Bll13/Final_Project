@@ -7,7 +7,8 @@ module.exports = {
         {
           inn: 123456778,
           ogrn: 123123123,
-          adres: '59.913782172940365, 30.35027170522696',
+          adres: 'Московский проспект 137',
+          adresCod: '59.913782172940365, 30.35027170522696',
           userId: 1,
           description: 'xorosha9 firma',
           createdAt: new Date(),
