@@ -2,8 +2,8 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { type RootState } from '../../store/store';
-import { useAppDispatch } from '../../store/store';
+import { type RootState } from '../../Store/store';
+import { useAppDispatch } from '../../Store/store';
 import './MapClir.css';
 import { addCardBuy } from './mapSlice';
 
