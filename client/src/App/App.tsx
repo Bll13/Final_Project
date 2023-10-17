@@ -8,10 +8,11 @@ import MainPage from '../features/mainPage/MainPage';
 import PostList from '../features/post/PostList';
 import PostPage from '../features/post/PostPage';
 import MapClir from '../features/Map/MapClir';
+
+
 import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
 import { visualPost } from '../features/post/postSlice';
-
-import { useAppDispatch } from '../store/store';
+import { useAppDispatch } from '../Store/store';
 
 
 
