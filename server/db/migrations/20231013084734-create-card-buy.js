@@ -10,7 +10,8 @@ module.exports = {
       },
       photo: {
         type: Sequelize.STRING,
-        defaultValue: './img/noPhoto.jpg',
+        defaultValue:
+          'https://yt3.googleusercontent.com/JMxe17W3N7p9YPRmZQo_gNr34jifpit3rO3wQ5-Sd6LMrqnmPEUHkeYeP2wY9oRu3k7JFM6yfA=s900-c-k-c0x00ffffff-no-rj',
       },
       adres: {
         allowNull: false,
