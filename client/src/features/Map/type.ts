@@ -9,7 +9,7 @@ export type MapsCardBuy = {
   content: string;
 };
 export type Post = {
-  adresCod: string;
+  adresCod: number[];
   adres: string;
   price: number;
 };

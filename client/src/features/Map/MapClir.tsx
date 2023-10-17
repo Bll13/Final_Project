@@ -10,7 +10,7 @@ import { addCardBuy } from './mapSlice';
 //
 
 function MapClir(): JSX.Element {
-  const [placemarks, setPlacemarks] = useState([]);
+  const [placemarks, setPlacemarks] = useState([]); // пока хз зачем
   const [adres, setAddress] = useState('');
   const [price, setPrice] = useState(0);
   const adresEntity = useSelector((store: RootState) => store.map.enti);
@@ -36,17 +36,17 @@ function MapClir(): JSX.Element {
       return null;
     }
   };
+  const handleMapClick = (e): void => {
+    const coords = e.get('coords');
+    setPlacemarks((prev) => [...prev, coords]);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    console.log(adres, 'aaaaddddrrreeesss');
     const coordinates = await geocode(adres);
     console.log(coordinates);
 
-    if (coordinates) {
-      setPlacemarks((prev) => [...prev, coordinates]);
-    }
-    dispatch(addCardBuy({ adres, adresCod:coordinates, price })).catch((err) => console.log(err));
+    dispatch(addCardBuy({ adres, adresCod: coordinates, price })).catch((err) => console.log(err));
   };
 
   return (
@@ -54,27 +54,31 @@ function MapClir(): JSX.Element {
 
     //
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={adres}
-          onChange={(e) => setAddress(e.target.value)}
-          placeholder="Введите адрес"
-        />
-        <input
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(+e.target.value)}
-          placeholder="Сколько мани нужно"
-        />
-        <button type="submit">Добавить метку</button>
-      </form>
-
+      <div className="divFormMap">
+        <form onSubmit={handleSubmit} className="formAddMap">
+          <div className="divI">
+            <input
+              type="text"
+              value={adres}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Введите адрес"
+            />
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(+e.target.value)}
+              placeholder="Сколько мани нужно"
+            />
+          </div>
+          <button type="submit">Добавить метку</button>
+        </form>
+      </div>
       <YMaps>
         <Map
           defaultState={{ center: [59.938678, 30.314474], zoom: 10 }}
           width="100%"
           height="400px"
+          onClick={handleMapClick}
         >
           {placemarks.map((coords, index) => (
             <Placemark key={index} geometry={coords} />
@@ -83,14 +87,14 @@ function MapClir(): JSX.Element {
             <Placemark
               geometry={el.coordinates}
               properties={{ iconCaption: el.content }}
-              key={el.content}
+              key={el.id}
             />
           ))}
           {adresCardBuy.map((el) => (
             <Placemark
               geometry={el.coordinates}
               properties={{ iconCaption: el.content }}
-              key={el.content}
+              key={el.id}
             />
           ))}
         </Map>

@@ -10,6 +10,7 @@ import MainPage from '../features/mainPage/MainPage';
 import MapClir from '../features/Map/MapClir';
 import { useAppDispatch } from '../store/store';
 import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
+import TestMapOnClick from '../features/Map/TestMapOnClick';
 
 
 function App(): JSX.Element {
@@ -25,6 +26,7 @@ function App(): JSX.Element {
       <Route path="/auth" element={<Registration />} />
       <Route path="/log" element={<Login />} />
       <Route path="/map" element={<MapClir/>} />
+      <Route path="/map3" element={<TestMapOnClick/>} />
 
     </Routes>
   );
