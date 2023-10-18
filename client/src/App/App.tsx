@@ -15,6 +15,9 @@ import MapClir from '../features/Map/MapClir';
 import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
 import { visualPost } from '../features/post/postSlice';
 
+
+//comment
+
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
