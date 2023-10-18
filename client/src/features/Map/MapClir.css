@@ -1,0 +1,13 @@
+[class*="copyrights-pane"] {
+    display: none !important;
+}
+
+.divFormMap{
+    display: flex;
+}
+.formAddMap{
+    display: flex;
+}
+.divInput{
+    display: flex;
+}

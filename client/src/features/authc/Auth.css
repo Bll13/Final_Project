@@ -18,9 +18,28 @@
     margin-top: 40%;
 
 }
-body{
-  background-color: rgb(246, 252, 247);
-}
+
 .loginForm{
   height: 100vh;
 }
+.asd{
+  margin-top: 5px;
+
+
+}
+.dav{
+ display: flex;
+ justify-content: flex-end;
+}
+.pa{
+  position: absolute;
+}
+.form__img-password{
+  width: 75%;
+}
+.zhopa{
+  width: 40vh;
+}
+/* .inputPassword{
+  margin-top: 12px;
+} */

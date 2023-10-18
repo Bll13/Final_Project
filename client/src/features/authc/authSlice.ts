@@ -14,7 +14,9 @@ export const delThunk=createAsyncThunk('auth/logout', ()=> api.logoutFetch())
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    messageErr:(state)=>{state.errUser='Пароли не совпадают'}
+  },
   extraReducers: (builder) => {
     builder
 
@@ -43,5 +45,5 @@ const authSlice = createSlice({
   
   },
 });
-
+export const { messageErr } = authSlice.actions;
 export default authSlice.reducer;

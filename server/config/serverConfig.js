@@ -9,7 +9,7 @@ const sessionConfig = require('./sessionsConfig')
 const config = (app) => {
   app.use(fileUpload());
   app.use(express.urlencoded({ extended: true }))
-  app.use(express.static(path.join(__dirname, '../public')))
+  app.use(express.static(path.join(__dirname, '../img')))
   app.use(express.json())
 
   app.use(cookieParser())

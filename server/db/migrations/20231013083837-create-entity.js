@@ -10,13 +10,21 @@ module.exports = {
       },
       inn: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
       },
       ogrn: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
       },
       adres: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      adresCod: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      url: {
         allowNull: false,
         type: Sequelize.STRING,
       },

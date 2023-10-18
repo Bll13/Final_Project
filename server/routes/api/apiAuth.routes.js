@@ -63,13 +63,14 @@ router.post('/login', async (req, res) => {
         req.session.userId = user.id
         res.json({ message: 'ok', user })
       } else {
-        res.json({ message: 'Логин или пароль не совпадают' })
+        res.status(400).json({ message: 'Логин или пароль не совпадают' })
       }
     } else {
-      res.json({ message: 'Заполните все поля' })
+      res.status(400).json({ message: 'Заполните все поля' })
     }
   } catch (error) {
-    res.json({ messageError: error.message })
+    res.status(500).json({ messageError: error.message })
+
   }
 })
 router.get('/logout', (req, res) => {
