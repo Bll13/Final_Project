@@ -12,13 +12,14 @@ router.get('/entity', async (req, res) => {
       coordinates: el.adresCod.split(',').map((elm) => Number(elm)),
       content: el.adres,
       id: el.id,
+      name: el['User.name'],
+      price: el.price,
     }))
     res.json({ message: 'ok', enti })
   } catch (error) {
     res.json({ messageError: error.message })
   }
 }),
-  // el['User.name']
   router.get('/carBuy', async (req, res) => {
     try {
       const cardBuyArr = await CardBuy.findAll({
@@ -29,6 +30,8 @@ router.get('/entity', async (req, res) => {
         coordinates: el.adresCod.split(',').map((elm) => Number(elm)),
         content: el.adres,
         id: el.id,
+        name: el['User.name'],
+        price: el.price,
       }))
       res.json({ message: 'ok', card })
     } catch (error) {
@@ -39,9 +42,8 @@ router.get('/entity', async (req, res) => {
 router.post('/carBuy', async (req, res) => {
   try {
     const { adresCod, adres, price } = req.body
-    console.log(adresCod, adres, price)
     const post = await CardBuy.create({
-      adresCod: `${adres[0]},${adres[1]}`,
+      adresCod: `${adresCod[0]},${adresCod[1]}`,
       adres,
       price,
       userId: req.session.userId,
