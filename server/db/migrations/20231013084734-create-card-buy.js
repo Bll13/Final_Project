@@ -8,11 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      photo: {
-        type: Sequelize.STRING,
-        defaultValue:
-          'https://yt3.googleusercontent.com/JMxe17W3N7p9YPRmZQo_gNr34jifpit3rO3wQ5-Sd6LMrqnmPEUHkeYeP2wY9oRu3k7JFM6yfA=s900-c-k-c0x00ffffff-no-rj',
-      },
       adres: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -57,7 +52,7 @@ module.exports = {
       },
     })
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('CardBuys')
   },
 }

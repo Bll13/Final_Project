@@ -29,7 +29,7 @@ const authSlice = createSlice({
       })
 
       .addCase(verification.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user = action.payload;
         state.errUser = '';
       })
       .addCase(verification.rejected, (state, action) => {
