@@ -18,7 +18,7 @@ router.get('/entity', async (req, res) => {
     res.json({ messageError: error.message })
   }
 }),
-//el['User.name']
+  // el['User.name']
   router.get('/carBuy', async (req, res) => {
     try {
       const cardBuyArr = await CardBuy.findAll({
@@ -39,7 +39,7 @@ router.get('/entity', async (req, res) => {
 router.post('/carBuy', async (req, res) => {
   try {
     const { adresCod, adres, price } = req.body
-    console.log(adresCod, adres, price );
+    console.log(adresCod, adres, price)
     const post = await CardBuy.create({
       adresCod: `${adres[0]},${adres[1]}`,
       adres,

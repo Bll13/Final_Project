@@ -9,17 +9,12 @@ import PostList from '../features/post/PostList';
 import PostPage from '../features/post/PostPage';
 import MapClir from '../features/Map/MapClir';
 
-
 import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
 import { visualPost } from '../features/post/postSlice';
-import { useAppDispatch } from '../Store/store';
-
-
+import { useAppDispatch } from '../store/store';
 
 function App(): JSX.Element {
-  
   const dispatch = useAppDispatch();
-
 
   useEffect(() => {
     dispatch(visualPost()).catch((err) => console.log(err));
@@ -34,7 +29,7 @@ function App(): JSX.Element {
       <Route path="/log" element={<Login />} />
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/:idPost" element={<PostPage />} />
-      <Route path="/map" element={<MapClir/>} />
+      <Route path="/map" element={<MapClir />} />
     </Routes>
   );
 }

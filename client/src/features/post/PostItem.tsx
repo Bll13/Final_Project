@@ -1,15 +1,45 @@
 import React from 'react';
-import type { PostBuy } from './type';
-import { Link } from 'react-router-dom';
+import { PostBuy } from './type';
+import deleteBtn from './img/deleteBtn.png';
+import { useAppDispatch } from '../../store/store';
 
-export function PostItem({ post }: { post: PostBuy }): JSX.Element {
+import { delPost } from './postSlice';
+
+function PostItem({ post }: { post: PostBuy }): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  function deletePostItem(): void {
+    console.log(post.userId);
+
+    dispatch(delPost(post.id)).catch((err) => console.log(err));
+  }
+
   return (
-    <div className='flexPost'>
-      <Link to={`${post.id}`}> <img className='photoPost' src={post.photo} /></Link>
-      <h1 className='category'>{post.category}</h1>
-      <div>{post.price}</div>
-      <br />
-      <br />
+    <div key={post.id} className="group relative">
+      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+        <button className="yyy" type="button" onClick={deletePostItem}>
+          <img className="ttt" src={deleteBtn} alt="" />
+        </button>
+
+        <img
+          src={post.photo}
+          className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+        />
+      </div>
+      <div className="mt-4 flex justify-between">
+        <div>
+          <h3 className="text-sm text-gray-200">
+            <a href={`/posts/${post.id}`}>
+              <span aria-hidden="true" className="absolute inset-0" />
+              {post.category}
+            </a>
+          </h3>
+          <p className="mt-1 text-sm text-gray-200">{post.obm}</p>
+        </div>
+        <p className="text-sm font-medium text-gray-200">{post.ves}</p>
+      </div>
     </div>
   );
 }
+
+export default PostItem;

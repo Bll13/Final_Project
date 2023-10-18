@@ -1,16 +1,15 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 import { type RootState } from '../../store/store';
 import { useAppDispatch } from '../../store/store';
 import './MapClir.css';
 import { addCardBuy } from './mapSlice';
+import axios from 'axios';
 
 //
 
 function MapClir(): JSX.Element {
-  const [placemarks, setPlacemarks] = useState([]);
   const [adres, setAddress] = useState('');
   const [price, setPrice] = useState(0);
   const adresEntity = useSelector((store: RootState) => store.map.enti);
@@ -39,14 +38,10 @@ function MapClir(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    console.log(adres, 'aaaaddddrrreeesss');
-    const coordinates = await geocode(adres);
-    console.log(coordinates);
 
-    if (coordinates) {
-      setPlacemarks((prev) => [...prev, coordinates]);
-    }
-    dispatch(addCardBuy({ adres, adresCod:coordinates, price })).catch((err) => console.log(err));
+    const coordinates = await geocode(adres);
+
+    dispatch(addCardBuy({ adres, adresCod: coordinates, price })).catch((err) => console.log(err));
   };
 
   return (
@@ -74,11 +69,8 @@ function MapClir(): JSX.Element {
         <Map
           defaultState={{ center: [59.938678, 30.314474], zoom: 10 }}
           width="100%"
-          height="400px"
+          height="100vh"
         >
-          {placemarks.map((coords, index) => (
-            <Placemark key={index} geometry={coords} />
-          ))}
           {adresEntity.map((el) => (
             <Placemark
               geometry={el.coordinates}
@@ -86,6 +78,7 @@ function MapClir(): JSX.Element {
               key={el.content}
             />
           ))}
+
           {adresCardBuy.map((el) => (
             <Placemark
               geometry={el.coordinates}
