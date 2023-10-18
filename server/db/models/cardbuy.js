@@ -2,16 +2,14 @@ const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
   class CardBuy extends Model {
-    static associate({ User }) {
+    static associate({ User, Photo }) {
       this.belongsTo(User, { foreignKey: 'userId' })
+      this.hasMany(Photo, { foreignKey: 'cardBuyId' })
     }
   }
   CardBuy.init(
     {
-      photo: {
-        type: DataTypes.STRING,
-        defaultValue: './img/noPhoto.jpg',
-      },
+    
       adres: {
         allowNull: false,
         type: DataTypes.STRING,

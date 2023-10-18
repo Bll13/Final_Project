@@ -1,42 +1,25 @@
+'use strict'
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('CardBuys', {
+    await queryInterface.createTable('Photos', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      adres: {
-        allowNull: false,
-        type: Sequelize.STRING,
+      url: {
+        type: Sequelize.TEXT,
       },
-      userId: {
+      cardBuyId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
+          model: 'CardBuys',
           key: 'id',
         },
         onDelete: 'cascade',
-      },
-      price: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      ves: {
-        type: Sequelize.INTEGER,
-      },
-      category: {
-        type: Sequelize.STRING,
-      },
-      status: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-      },
-      obm: {
-        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -49,6 +32,6 @@ module.exports = {
     })
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('CardBuys')
+    await queryInterface.dropTable('Photos')
   },
 }
