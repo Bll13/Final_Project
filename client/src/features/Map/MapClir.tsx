@@ -2,8 +2,8 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { type RootState } from '../../Store/store';
-import { useAppDispatch } from '../../Store/store';
+import { type RootState } from '../../store/store';
+import { useAppDispatch } from '../../store/store';
 import './MapClir.css';
 import { addCardBuy } from './mapSlice';
 
@@ -67,7 +67,7 @@ function MapClir(): JSX.Element {
         <Map
           defaultState={{ center: [59.938678, 30.314474], zoom: 10 }}
           width="100%"
-          height="400px"
+          height="100vh"
         >
           <Placemark geometry={[55.751574, 37.573856]} />
           <Placemark
@@ -92,6 +92,7 @@ function MapClir(): JSX.Element {
               key={el.id}
             />
           ))}
+
           {adresCardBuy.map((el) => (
             <Placemark
               geometry={el.coordinates}

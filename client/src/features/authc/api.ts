@@ -53,5 +53,7 @@ export const verificationFetch = async (): Promise<{ message: string; user: User
     throw message;
   }
   const data = await res.json();
+  console.log(data);
+  
   return data;
 };

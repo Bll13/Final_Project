@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { RootState, useAppDispatch } from '../../Store/store';
+import { RootState, useAppDispatch } from '../../store/store';
 import './Auth.css';
 import { messageErr, registgation } from './authSlice';
 import type { UserWithoutId } from './type';

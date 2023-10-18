@@ -11,7 +11,7 @@ import MapClir from '../features/Map/MapClir';
 
 import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
 import { visualPost } from '../features/post/postSlice';
-import { useAppDispatch } from '../Store/store';
+import { useAppDispatch } from '../store/store';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -30,7 +30,6 @@ function App(): JSX.Element {
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/:idPost" element={<PostPage />} />
       <Route path="/map" element={<MapClir />} />
-
     </Routes>
   );
 }
