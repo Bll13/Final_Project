@@ -12,13 +12,14 @@ router.get('/entity', async (req, res) => {
       coordinates: el.adresCod.split(',').map((elm) => Number(elm)),
       content: el.adres,
       id: el.id,
+      name: el['User.name'],
+      price: el.price,
     }))
     res.json({ message: 'ok', enti })
   } catch (error) {
     res.json({ messageError: error.message })
   }
 }),
-  // el['User.name']
   router.get('/carBuy', async (req, res) => {
     try {
       const cardBuyArr = await CardBuy.findAll({
@@ -29,6 +30,8 @@ router.get('/entity', async (req, res) => {
         coordinates: el.adresCod.split(',').map((elm) => Number(elm)),
         content: el.adres,
         id: el.id,
+        name: el['User.name'],
+        price: el.price,
       }))
       res.json({ message: 'ok', card })
     } catch (error) {

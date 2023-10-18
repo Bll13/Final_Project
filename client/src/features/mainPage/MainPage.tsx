@@ -13,7 +13,7 @@ import {
 import './MainPage.css';
 
 function MainPage(): JSX.Element {
-  const links = [{ name: 'Войти', href: '/auth' }];
+  const links = [{ name: 'Войти', href: '/log' }];
   const solutions = [
     {
       name: 'Analytics',

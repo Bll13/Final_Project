@@ -30,6 +30,7 @@ function App(): JSX.Element {
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/:idPost" element={<PostPage />} />
       <Route path="/map" element={<MapClir />} />
+
     </Routes>
   );
 }
