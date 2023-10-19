@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-
+import Slider from "react-slick";
 import { Popover, Transition } from '@headlessui/react';
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 
@@ -50,7 +50,7 @@ function MainPage(): JSX.Element {
     { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
     { name: 'Contact sales', href: '#', icon: PhoneIcon },
   ];
-
+//g
   return (
     <div className="mainPage">
       <div className="textInfo relative isolate overflow-hidden  py-24 sm:py-32">
