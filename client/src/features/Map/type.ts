@@ -4,6 +4,12 @@ export type MapsEntity = {
   content: string;
   name: string;
   price: number;
+  inn: number;
+  ogrn:number;
+  adres:string;
+  adresCod:string;
+  url:string;
+  description:string;
 };
 export type MapsCardBuy = {
   id: number;
