@@ -26,7 +26,7 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(verification()).catch((err) => console.log(err));
+    dispatch(verification()).catch((err:string) => console.log(err));
     dispatch(visualPost()).catch((err) => console.log(err));
     dispatch(initEntityMap()).catch((err) => console.log(err));
     dispatch(initCardBuyMap()).catch((err) => console.log(err));
