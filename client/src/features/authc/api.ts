@@ -46,9 +46,8 @@ export const logoutFetch = async (): Promise<{ message: string }> => {
   return data;
 };
 
-export const verificationFetch = async (): Promise< User > => {
+export const verificationFetch = async (): Promise< {message: string, user: User }> => {
   const res = await fetch('/api/auth/verification');
-  
   
   if (!res.ok) {
     const { message } = await res.json();

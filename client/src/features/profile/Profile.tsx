@@ -2,9 +2,10 @@ import React from 'react';
 import { RootState, useAppDispatch } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import {  UserCircleIcon } from '@heroicons/react/20/solid';
+import { UserCircleIcon } from '@heroicons/react/20/solid';
 import { addEnti } from './addSlice';
 import axios from 'axios';
+import NavBar from '../post/NavBar';
 
 function Profile(): JSX.Element {
   const users = useSelector((store: RootState) => store.auth.user);
@@ -16,11 +17,6 @@ function Profile(): JSX.Element {
   const [description, setDescription] = useState('');
 
   const product = {
-    href: '#',
-    breadcrumbs: [
-      { id: 1, name: 'На главную', href: '/' },
-      { id: 2, name: 'Выйти', href: '#' },
-    ],
     images: [
       {
         src: 'https://nalogynet.ru/wp-content/uploads/2022/08/def.jpg',
@@ -42,7 +38,7 @@ function Profile(): JSX.Element {
       { name: '2XL', inStock: true },
       { name: '3XL', inStock: true },
     ],
-    description: `Спасибо ${users?.name} вашу заботу о важности утилизации мусора!`,
+    description: `Спасибо ${users?.name}  за вашу заботу о важности утилизации мусора!`,
     details:
       'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
   };
@@ -66,51 +62,19 @@ function Profile(): JSX.Element {
   //inn, ogrn, url, adres
 
   const dispatch = useAppDispatch();
-  async function addEntri(e:React.FormEvent<HTMLFormElement>):Promise<void> {
+  async function addEntri(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     const coordinates = await geocode(adres);
-    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod:coordinates })).catch((err) => console.log(err));
-  };
+    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod: coordinates })).catch((err) =>
+      console.log(err),
+    );
+  }
 
-  
   return (
     <div>
+      <NavBar />
       <div className="bg-green-700">
         <div className="pt-6 max-w-full">
-          <nav aria-label="Breadcrumb">
-            <ol
-              role="list"
-              className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
-            >
-              {product.breadcrumbs.map((breadcrumb) => (
-                <li key={breadcrumb.id}>
-                  <div className="flex items-center">
-                    <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-200">
-                      {breadcrumb.name}
-                    </a>
-                    <svg
-                      width={16}
-                      height={20}
-                      viewBox="0 0 16 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      className="h-5 w-4 text-gray-300"
-                    >
-                      <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                    </svg>
-                  </div>
-                </li>
-              ))}
-              <li className="text-sm">
-                <a
-                  href={product.href}
-                  aria-current="page"
-                  className="font-medium text-gray-200 hover:text-gray-200"
-                >
-                </a>
-              </li>
-            </ol>
-          </nav>
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-full lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
               <div>

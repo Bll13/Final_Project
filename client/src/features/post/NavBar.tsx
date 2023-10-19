@@ -17,7 +17,7 @@ function NavBar(): JSX.Element {
   }
 
   return (
-    <nav aria-label="Breadcrumb">
+    <nav aria-label="Breadcrumb navnav">
       <ol
         role="list"
         className=" navBar mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
@@ -41,9 +41,11 @@ function NavBar(): JSX.Element {
             </div>
           </li>
         ))}
+      
         <button className="mr-2 text-sm font-medium text-gray-200" type="button" onClick={logOut}>
           Выйти
         </button>
+        <button className="mr-2 text-sm font-medium text-gray-200" type="button" onClick={()=>{navigate('/enti')}}> \ Пункты</button>
       </ol>
     </nav>
   );

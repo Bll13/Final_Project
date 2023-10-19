@@ -88,7 +88,9 @@ router.get('/verification', async (req, res) => {
         where: { id: userId },
         attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
       })
+     
       res.status(201).json({message: 'ok', user})
+     
     } else {
       res.status(403).json({ message: '' })
     }
