@@ -12,7 +12,7 @@ function NavBar(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   function logOut() {
-    dispatch(delThunk()).catch((err) => console.log(err));
+    dispatch(delThunk()).catch((err:string) => console.log(err));
     navigate('/');
   }
 

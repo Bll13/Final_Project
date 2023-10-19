@@ -8,6 +8,7 @@ import PostItem from './PostItem';
 import NavBar from './NavBar';
 
 import MapCarb from '../Map/MapCarb';
+import type{ PostBuy } from './type';
 
 function PostList(): JSX.Element {
   const [select, setSelect] = useState('');
@@ -18,14 +19,14 @@ function PostList(): JSX.Element {
   if (select === '' && !money) {
     posts = useSelector((store: RootState) => store.posts.posts);
 
-    newPosts = [...posts].sort((a, b) => a.price - b.price);
+    newPosts = [...posts].sort((a:PostBuy, b:PostBuy) => a.price - b.price);
   } else if (select === '' && money) {
     newPosts = useSelector((store: RootState) =>
-      store.posts.posts.filter((el) => el.price > Number(money)),
+      store.posts.posts.filter((el: PostBuy) => el.price > Number(money)),
     );
   } else if (select) {
     newPosts = useSelector((store: RootState) =>
-      store.posts.posts.filter((el) => el.category === select && el.price > Number(money)),
+      store.posts.posts.filter((el: PostBuy) => el.category === select && el.price > Number(money)),
     );
   }
 
@@ -79,7 +80,7 @@ function PostList(): JSX.Element {
                 </h2>
 
                 <div className="postsContainer mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                  {newPosts?.map((post) => <PostItem post={post} key={post.id} />)}
+                  {newPosts?.map((post: PostBuy) => <PostItem post={post} key={post.id} />)}
                 </div>
               </div>
             </div>

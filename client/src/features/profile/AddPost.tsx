@@ -77,7 +77,7 @@ function AddPost(): JSX.Element {
      
       const coordinates = await geocode(adres);
       formData.append('adresCod', `${coordinates}`);
-      dispatch(addPost(formData)).catch((err) => console.log(err));
+      dispatch(addPost(formData)).catch((err:string) => console.log(err));
     }
   }
 

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NavBar from './NavBar';
 import closedBtn from './img/closedBtn.png';
+import type { PostBuy } from './type';
 
 function PostPage(): JSX.Element {
   const { idPost } = useParams();
@@ -14,7 +15,7 @@ function PostPage(): JSX.Element {
   const posts = useSelector((store: RootState) => store.posts.posts);
   let post;
   if (posts.length > 0) {
-    post = posts.find((el) => el.id === Number(idPost));
+    post = posts.find((el: PostBuy) => el.id === Number(idPost));
   }
 
   let coord;

@@ -65,7 +65,7 @@ function Profile(): JSX.Element {
   async function addEntri(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     const coordinates = await geocode(adres);
-    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod: coordinates })).catch((err) =>
+    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod: coordinates })).catch((err:string) =>
       console.log(err),
     );
   }

@@ -12,7 +12,7 @@ function PostItem({ post }: { post: PostBuy }): JSX.Element {
   const userId = useSelector((store: RootState) => store.auth.user?.id);
 
   function deletePostItem(): void {
-    dispatch(delPost(post.id)).catch((err) => console.log(err));
+    dispatch(delPost(post.id)).catch((err:string) => console.log(err));
   }
 
   return (
