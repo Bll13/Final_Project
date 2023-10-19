@@ -1,5 +1,5 @@
 import React from 'react';
-import { RootState } from '../../Store/store';
+import { RootState, useAppDispatch } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { StarIcon, UserCircleIcon } from '@heroicons/react/20/solid';
@@ -177,6 +177,7 @@ function Profile(): JSX.Element {
         </div>
       </div>
     </div>
+
   );
 }
 
