@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { RootState, useAppDispatch } from '../../Store/store';
+import { RootState, useAppDispatch } from '../../store/store';
 import { loginThunk } from './authSlice';
 import type { UserLogin } from './type';
 import { useNavigate } from 'react-router-dom';

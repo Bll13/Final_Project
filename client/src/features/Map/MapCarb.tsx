@@ -6,9 +6,10 @@ import { type RootState } from '../../store/store';
 
 import './MapClir.css';
 
+
 function MapCarb(): JSX.Element {
   const adresCardBuy = useSelector((store: RootState) => store.map.card);
-
+  console.log(adresCardBuy, '---------');
   return (
     <div>
       <YMaps>
@@ -22,7 +23,7 @@ function MapCarb(): JSX.Element {
             options={{
               draggable: true,
             }}
-            // onDragEnd={handleGeocode}
+
           />
           {adresCardBuy.map((el) => (
             <Placemark

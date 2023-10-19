@@ -4,18 +4,16 @@ const fileUpload = require('../../utils/fileUpload')
 
 router.post('/', async (req, res) => {
   try {
-    const { category, adres, ves, price, obm } = req.body
+    const { category, adres, ves, price, obm, adresCod } = req.body
     const file = req.files?.url
-    console.log(file, 'kkkkkkkkkkkkkkkkkkkkk')
 
+ 
     const arrUrl = await Promise.all(file.map((el) => fileUpload(el)))
 
-    console.log(arrUrl)
-
-    if (adres && price && ves) {
+    if (adres && price && ves && adresCod) {
       const post = await CardBuy.create({
         category,
-        adresCod: adres,
+        adresCod,
         adres,
         ves,
         price,
@@ -23,7 +21,7 @@ router.post('/', async (req, res) => {
         obm,
         userId: req.session.userId,
       })
-
+      console.log(post, 'pppooosssst')
       await Promise.all(
         arrUrl.map((el) => Photo.create({ url: el, cardBuyId: post.id })),
       )

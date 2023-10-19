@@ -1,5 +1,5 @@
 import React from 'react';
-import { RootState } from '../../Store/store';
+import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
@@ -176,13 +176,15 @@ function Profile(): JSX.Element {
                   </RadioGroup>
                 </div>
 
-               <a href='/addPost'> <button
-                
-                  type="button" 
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-green-900 px-8 py-3 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  Подать объявление
-                </button></a>
+                <a href="/addPost">
+                  {' '}
+                  <button
+                    type="button"
+                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-green-900 px-8 py-3 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Подать объявление
+                  </button>
+                </a>
               </form>
             </div>
             <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
