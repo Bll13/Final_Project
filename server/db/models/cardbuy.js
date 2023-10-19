@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     {
     
       adres: {
-        allowNull: false,
+        
         type: DataTypes.STRING,
       },
       adresCod: {
-        allowNull: false,
+        
         type: DataTypes.STRING,
       },
       userId: {
