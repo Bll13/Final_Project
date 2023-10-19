@@ -6,7 +6,7 @@ router.post('/', async (req, res) => {
   try {
     const { category, adres, ves, price, obm } = req.body
     const file = req.files?.url
-    console.log(file.name, 'kkkkkkkkkkkkkkkkkkkkk')
+    console.log(file, 'kkkkkkkkkkkkkkkkkkkkk')
 
     const arrUrl = await Promise.all(file.map((el) => fileUpload(el)))
 
@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
     if (adres && price && ves) {
       const post = await CardBuy.create({
         category,
+        adresCod: adres,
         adres,
         ves,
         price,
@@ -28,7 +29,8 @@ router.post('/', async (req, res) => {
       )
 
       const newPost = await CardBuy.findOne({
-        where: {id: post.id}, include: {model: Photo}
+        where: { id: post.id },
+        include: { model: Photo },
       })
 
       res.status(201).json({ newPost, message: 'ok' })
