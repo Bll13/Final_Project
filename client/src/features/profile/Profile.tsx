@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { StarIcon, UserCircleIcon } from '@heroicons/react/20/solid';
 import { addEnti } from './addSlice';
+import axios from 'axios';
 
 function Profile(): JSX.Element {
   const users = useSelector((store: RootState) => store.auth.user);
@@ -46,12 +47,30 @@ function Profile(): JSX.Element {
     details:
       'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
   };
-
+  const geocode = async (adres: string): Promise<number[]> => {
+    try {
+      const response = await axios.get('https://geocode-maps.yandex.ru/1.x', {
+        params: {
+          geocode: adres,
+          format: 'json',
+          apikey: '6141dfc9-90c8-4b3d-952a-bafd8feae6f9',
+        },
+      });
+      const position =
+        response.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+      return position.reverse().map(Number);
+    } catch (error) {
+      console.error('Произошла ошибка при геокодировании', error);
+      return [];
+    }
+  };
   //inn, ogrn, url, adres
   const dispatch = useAppDispatch();
-  function addEntri(e: React.ChangeEvent<HTMLInputElement>) {
+  async function addEntri(e: React.ChangeEvent<HTMLInputElement>):Promise<void> {
     e.preventDefault();
-    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod }));
+    const coordinates = await geocode(adres);
+    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod:coordinates })).catch((err) => console.log(err));
+  };
   }
 
   return (
@@ -142,42 +161,63 @@ function Profile(): JSX.Element {
                       onChange={(e) => setOgrn(+e.target.value)}
                     />
                   </div>
-                  <p className="sr-only">{reviews.average} out of 5 stars</p>
-                  <a
-                    href={reviews.href}
-                    className="ml-3 text-sm font-medium text-green-200 hover:text-yellow-300"
-                  >
-                    {reviews.totalCount} reviews
-                  </a>
-                </div>
+                  <div className="inputPost mt-2">
+                    <input
+                      type="text"
+                      name="url"
+                      id="url"
+                      placeholder="Ссылка"
+                      className="block w-full rounded-md border-0 py-1.5 bg-green-100 text-gray-600 shadow-sm ring-1 ring-inset ring-green-800 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
+                    />
+                  </div>
+                  <div className="inputPost mt-2">
+                    <input
+                      type="text"
+                      name="adres"
+                      id="adres"
+                      placeholder="Адрес"
+                      className="block w-full rounded-md border-0 py-1.5 bg-green-100 text-gray-600 shadow-sm ring-1 ring-inset ring-green-800 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                      value={adres}
+                      onChange={(e) => setAdres(e.target.value)}
+                    />
+                  </div>
+                  <div className="inputPost mt-2">
+                    <input
+                      type="text"
+                      name="description"
+                      id="description"
+                      placeholder="Описание"
+                      className="block w-full rounded-md border-0 py-1.5 bg-green-100 text-gray-600 shadow-sm ring-1 ring-inset ring-green-800 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                  </div>
+                  <button type="submit"></button>
+                </form>
+
+                {users?.idRole !== 2 ? (
+                  <></>
+                ) : (
+                  <form className="mt-40">
+                    <a href="/addPost">
+                      {' '}
+                      <button
+                        type="button"
+                        className="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-green-900 px-8 py-3 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      >
+                        Подать объявление
+                      </button>
+                    </a>
+                  </form>
+                )}
               </div>
-
-              <form className="mt-10">
-                {/* Sizes */}
-                <div className="mt-10">
-                  <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
-                    <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
-                  </RadioGroup>
-                </div>
-
-               <a href='/addPost'> <button
-                
-                  type="button" 
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-green-900 px-8 py-3 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  Подать объявление
-                </button></a>
-              </form>
-            </div>
-            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg"></div>
-              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   );
 }
 
