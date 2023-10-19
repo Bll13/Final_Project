@@ -1,12 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type {  AddPost, Post, State } from './TypePost';
+import type { AddPost, EntitiAdd, Post, State } from './TypePost';
 import * as api from './api';
 
-const initialState: State = { posts: [], errPost: '' };
+const initialState: State = { posts: [], errPost: '', enti: [] };
 
-export const addPost = createAsyncThunk('post/add', (obj:FormData) => api.addPostFetch(obj));
 
- const addSlice = createSlice({
+export const addEnti = createAsyncThunk('post/add', (obj: EntitiAdd) => api.addEntiFetch(obj));
+
+export const addPost = createAsyncThunk('post/add', (obj: FormData) => api.addPostFetch(obj));
+
+const addSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {},
@@ -18,6 +21,14 @@ export const addPost = createAsyncThunk('post/add', (obj:FormData) => api.addPos
         state.errPost = '';
       })
       .addCase(addPost.rejected, (state, action) => {
+        state.errPost = action.error.message;
+      })
+
+      .addCase(addEnti.fulfilled, (state, action) => {
+        state.enti.push(action.payload.enti);
+        state.errPost = '';
+      })
+      .addCase(addEnti.rejected, (state, action) => {
         state.errPost = action.error.message;
       });
   },

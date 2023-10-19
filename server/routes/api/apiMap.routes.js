@@ -14,6 +14,12 @@ router.get('/entity', async (req, res) => {
       id: el.id,
       name: el['User.name'],
       price: el.price,
+      inn: el.inn,
+      ogrn: el.ogrn,
+      adres: el.adres,
+      adresCod: el.adresCod,
+      url: el.url,
+      description: el.description,
     }))
  
     res.json({ message: 'ok', enti })
