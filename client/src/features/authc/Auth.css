@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
 }
- /* .inputFormaRegistation {
+/* .inputFormaRegistation {
   display: flex;
 } */
 .inputRega {
@@ -11,33 +11,30 @@
 .buttonRega {
   display: flex;
 }
-.forRegistration{
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    margin-top: 40%;
-
+.forRegistration {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  margin-top: 40%;
 }
 
-.loginForm{
+.loginForm {
   height: 100vh;
 }
-.asd{
+.asd {
   margin-top: 5px;
-
-
 }
-.dav{
- display: flex;
- justify-content: flex-end;
+.dav {
+  display: flex;
+  justify-content: flex-end;
 }
-.pa{
+.pa {
   position: absolute;
 }
-.form__img-password{
+.form__img-password {
   width: 75%;
 }
-.zhopa{
+.zhopa {
   width: 40vh;
 }
 /* .inputPassword{

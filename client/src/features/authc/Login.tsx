@@ -3,20 +3,21 @@
 import React, { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { RootState, useAppDispatch } from '../../Store/store';
+import { RootState, useAppDispatch } from '../../store/store';
 import { loginThunk } from './authSlice';
 import type { UserLogin } from './type';
 import { useNavigate } from 'react-router-dom';
 import openEye from './img/openEye.png';
-import closedEye from './img/closedEye.png'
+import closedEye from './img/closedEye.png';
 import { useSelector } from 'react-redux';
 
 function Login(): JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
-  const nav =useNavigate();
+  const nav = useNavigate();
   const [password, setPassword] = useState(false);
   const dispatch = useAppDispatch();
-  const err=useSelector((stor:RootState)=>stor.auth.errUser)
+  const err = useSelector((stor: RootState) => stor.auth.errUser);
+
   const {
     register,
     formState: { errors },
@@ -24,14 +25,15 @@ function Login(): JSX.Element {
   } = useForm<UserLogin>({ mode: 'onBlur' });
   const onSubmit: SubmitHandler<UserLogin> = (data) => {
     dispatch(loginThunk(data));
+    nav('/posts');
   };
-  
-  function who():void{
-    nav('/auth')
+
+  function who(): void {
+    nav('/auth');
   }
   return (
     <div className="flex min-h-full    flex-col justify-center px-6 py-12 lg:px-8 bg-green-700 ">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-200">
           Войдите в свой аккаунт
         </h2>
@@ -66,15 +68,17 @@ function Login(): JSX.Element {
                   minLength: { value: 5, message: 'Неверный пароль' },
                 })}
                 className=" bg-gray-300 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-             
-             />
- 
-              <p className ='pa'onClick={() => setPassword((prev) => !prev)}> <img
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="form__img-password"
-            src={showPassword ? openEye : closedEye}
-            alt="password eye"
-          /></p>
+              />
+
+              <p className="pa" onClick={() => setPassword((prev) => !prev)}>
+                {' '}
+                <img
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="form__img-password"
+                  src={showPassword ? openEye : closedEye}
+                  alt="password eye"
+                />
+              </p>
             </div>
             <div>{errors?.password && <p>{errors?.password?.message || 'Неверный пароль'}</p>}</div>
           </div>

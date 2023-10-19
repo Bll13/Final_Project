@@ -15,8 +15,7 @@ export type UserWithoutId = {
   password: string;
   idRole: number;
   phoneNumber: string;
-  passwordtwo:string
-
+  passwordtwo: string;
 };
 export type UserLogin = {
   email: string;
