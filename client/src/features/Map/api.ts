@@ -18,7 +18,7 @@ export const cardBuyFetch = async (): Promise<{ message: string; card: MapsCardB
     throw message;
   }
   const data = await res.json();
-console.log(data);
+
 
   return data;
 };
