@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
 import { visualPost } from '../features/post/postSlice';
-import { useAppDispatch } from '../store/store';
+
 import { verification } from '../features/authc/authSlice';
 
 import Registration from '../features/authc/Registration';
@@ -18,6 +18,7 @@ import PostPage from '../features/post/PostPage';
 
 
 import EntiList from '../features/post/EntiList';
+import { useAppDispatch } from '../store/store';
 
 
 
