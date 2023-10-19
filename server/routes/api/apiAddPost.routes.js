@@ -4,18 +4,15 @@ const fileUpload = require('../../utils/fileUpload')
 
 router.post('/', async (req, res) => {
   try {
-    const { category, adres, ves, price, obm } = req.body
+    const { category, adres, ves, price, obm, adresCod } = req.body
     const file = req.files?.url
-    console.log(file, 'kkkkkkkkkkkkkkkkkkkkk')
 
     const arrUrl = await Promise.all(file.map((el) => fileUpload(el)))
 
-    console.log(arrUrl)
-
-    if (adres && price && ves) {
+    if (adres && price && ves && adresCod) {
       const post = await CardBuy.create({
         category,
-        adresCod: adres,
+        adresCod,
         adres,
         ves,
         price,
@@ -34,12 +31,10 @@ router.post('/', async (req, res) => {
       })
 
       res.status(201).json({ newPost, message: 'ok' })
-      console.log(post, '66666666666666666666')
     } else {
       res.status(401).json({ message: 'заполните все поля' })
     }
   } catch (error) {
-    console.log(error.message)
     res.status(500).json(error.message)
   }
 })

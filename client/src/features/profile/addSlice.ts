@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { AddPost, EntitiAdd, Post, State } from './TypePost';
+import type { EntitiAdd, State } from './TypePost';
 import * as api from './api';
 
 const initialState: State = { posts: [], errPost: '', enti: [] };

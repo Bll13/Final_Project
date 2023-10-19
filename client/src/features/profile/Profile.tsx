@@ -2,12 +2,12 @@ import React from 'react';
 import { RootState, useAppDispatch } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { StarIcon, UserCircleIcon } from '@heroicons/react/20/solid';
+import {  UserCircleIcon } from '@heroicons/react/20/solid';
 import { addEnti } from './addSlice';
+import axios from 'axios';
 
 function Profile(): JSX.Element {
   const users = useSelector((store: RootState) => store.auth.user);
-  const enti = useSelector((store: RootState) => store.map.enti);
 
   const [inn, setInn] = useState(0);
   const [ogrn, setOgrn] = useState(0);
@@ -46,14 +46,33 @@ function Profile(): JSX.Element {
     details:
       'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
   };
-
+  const geocode = async (adres: string): Promise<number[]> => {
+    try {
+      const response = await axios.get('https://geocode-maps.yandex.ru/1.x', {
+        params: {
+          geocode: adres,
+          format: 'json',
+          apikey: '6141dfc9-90c8-4b3d-952a-bafd8feae6f9',
+        },
+      });
+      const position =
+        response.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+      return position.reverse().map(Number);
+    } catch (error) {
+      console.error('Произошла ошибка при геокодировании', error);
+      return [];
+    }
+  };
   //inn, ogrn, url, adres
-  const dispatch = useAppDispatch();
-  function addEntri(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod }));
-  }
 
+  const dispatch = useAppDispatch();
+  async function addEntri(e:React.FormEvent<HTMLFormElement>):Promise<void> {
+    e.preventDefault();
+    const coordinates = await geocode(adres);
+    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod:coordinates })).catch((err) => console.log(err));
+  };
+
+  
   return (
     <div>
       <div className="bg-green-700">
@@ -88,7 +107,6 @@ function Profile(): JSX.Element {
                   aria-current="page"
                   className="font-medium text-gray-200 hover:text-gray-200"
                 >
-                  {product.name}
                 </a>
               </li>
             </ol>
@@ -175,7 +193,7 @@ function Profile(): JSX.Element {
                       onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
-                  <button type="submit"></button>
+                  <button type="submit">фыв</button>
                 </form>
 
                 {users?.idRole !== 2 ? (

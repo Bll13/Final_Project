@@ -13,7 +13,7 @@ function MapClir(): JSX.Element {
   const [price, setPrice] = useState(0);
   const adresEntity = useSelector((store: RootState) => store.map.enti);
   const adresCardBuy = useSelector((store: RootState) => store.map.card);
-
+ 
   const geocode = async (adres: string): Promise<number[]> => {
     try {
       const response = await axios.get('https://geocode-maps.yandex.ru/1.x', {

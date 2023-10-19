@@ -3,8 +3,11 @@ import { useSelector } from 'react-redux';
 import { addPost } from './addSlice';
 import type { RootState } from '../../store/store';
 import { useAppDispatch } from '../../store/store';
+import axios from 'axios';
+
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import './AddPost.css';
+
 
 const product = {
   href: '#',
@@ -18,14 +21,35 @@ function AddPost(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
 
-  const categoryInput = useRef<HTMLInputElement>(null);
+  const categoryInput = useRef<HTMLSelectElement>(null);
   const adresInput = useRef<HTMLInputElement>(null);
   const vesInput = useRef<HTMLInputElement>(null);
   const priceInput = useRef<HTMLInputElement>(null);
   const photoIdInput = useRef<HTMLInputElement>(null);
   const obmInput = useRef<HTMLInputElement>(null);
+  //
+  const geocode = async (adres: string): Promise<number[]> => {
+    try {
+      const response = await axios.get('https://geocode-maps.yandex.ru/1.x', {
+        params: {
+          geocode: adres,
+          format: 'json',
+          apikey: '6141dfc9-90c8-4b3d-952a-bafd8feae6f9',
+        },
+      });
+      const position =
+        response.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+      return position.reverse().map(Number);
+    } catch (error) {
+      console.error('Произошла ошибка при геокодировании', error);
+      return [];
+    }
+  };
 
-  function postUpd(e: React.FormEvent<HTMLFormElement>): void {
+
+  //
+
+  async  function postUpd(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
 
     if (
@@ -55,16 +79,21 @@ function AddPost(): JSX.Element {
       formData.append('price', price);
       formData.append('obm', obm);
 
-      console.log(formData);
-      
-
-      dispatch(addPost(formData)).catch((err) =>
+ 
+        const coordinates = await geocode(adres);
+        formData.append('adresCod', `${coordinates}`);
+        dispatch(addPost(formData)).catch((err) =>
         console.log(err),
       );
+      
+      
+      };
+ 
+     
     }
 
-    // dispatch(addPost({ category, adres, ves, price, photo, obm })).catch((err) => console.log(err));
-  }
+
+  
 
   return (
     <form onSubmit={postUpd}>

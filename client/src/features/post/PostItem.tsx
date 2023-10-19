@@ -4,7 +4,7 @@ import deleteBtn from './img/deleteBtn.png';
 import { useAppDispatch } from '../../store/store';
 
 import { delPost } from './postSlice';
-import MapCarb from '../Map/MapCarb';
+
 
 function PostItem({ post }: { post: PostBuy }): JSX.Element {
   const dispatch = useAppDispatch();

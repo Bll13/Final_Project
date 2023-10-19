@@ -12,7 +12,7 @@ function MapEntity(): JSX.Element {
   const [adres, setAddress] = useState('');
   const [price, setPrice] = useState(0);
   const adresEntity = useSelector((store: RootState) => store.map.enti);
-  const adresCardBuy = useSelector((store: RootState) => store.map.card);
+
 
   const geocode = async (adres: string): Promise<number[]> => {
     try {
