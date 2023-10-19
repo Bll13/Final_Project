@@ -52,7 +52,7 @@ export type Entiti = {
   inn: number;
   ogrn: number;
   adres: string;
-  adresCod: string;
+  adresCod: number[];
   url: string;
   userId: number;
   description: string;

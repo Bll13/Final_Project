@@ -4,10 +4,10 @@ import { addPost } from './addSlice';
 import type { RootState } from '../../store/store';
 import { useAppDispatch } from '../../store/store';
 import axios from 'axios';
-import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
+
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import './AddPost.css';
-import { addCardBuy } from '../Map/mapSlice';
+
 
 const product = {
   href: '#',
@@ -21,7 +21,7 @@ function AddPost(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
 
-  const categoryInput = useRef<HTMLInputElement>(null);
+  const categoryInput = useRef<HTMLSelectElement>(null);
   const adresInput = useRef<HTMLInputElement>(null);
   const vesInput = useRef<HTMLInputElement>(null);
   const priceInput = useRef<HTMLInputElement>(null);

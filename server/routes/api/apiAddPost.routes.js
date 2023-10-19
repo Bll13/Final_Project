@@ -7,7 +7,6 @@ router.post('/', async (req, res) => {
     const { category, adres, ves, price, obm, adresCod } = req.body
     const file = req.files?.url
 
- 
     const arrUrl = await Promise.all(file.map((el) => fileUpload(el)))
 
     if (adres && price && ves && adresCod) {
@@ -21,7 +20,7 @@ router.post('/', async (req, res) => {
         obm,
         userId: req.session.userId,
       })
-      console.log(post, 'pppooosssst')
+
       await Promise.all(
         arrUrl.map((el) => Photo.create({ url: el, cardBuyId: post.id })),
       )
@@ -32,12 +31,10 @@ router.post('/', async (req, res) => {
       })
 
       res.status(201).json({ newPost, message: 'ok' })
-      console.log(post, '66666666666666666666')
     } else {
       res.status(401).json({ message: 'заполните все поля' })
     }
   } catch (error) {
-    console.log(error.message)
     res.status(500).json(error.message)
   }
 })
