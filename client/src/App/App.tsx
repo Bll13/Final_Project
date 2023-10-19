@@ -14,7 +14,7 @@ import Profile from '../features/profile/Profile';
 import AddPost from '../features/profile/AddPost';
 import PostList from '../features/post/PostList';
 import PostPage from '../features/post/PostPage';
-import MapClir from '../features/Map/MapClir';
+
 
 
 import EntiList from '../features/post/EntiList';
@@ -27,9 +27,9 @@ function App(): JSX.Element {
 
   useEffect(() => {
     dispatch(verification()).catch((err:string) => console.log(err));
-    dispatch(visualPost()).catch((err) => console.log(err));
-    dispatch(initEntityMap()).catch((err) => console.log(err));
-    dispatch(initCardBuyMap()).catch((err) => console.log(err));
+    dispatch(visualPost()).catch((err:string) => console.log(err));
+    dispatch(initEntityMap()).catch((err:string) => console.log(err));
+    dispatch(initCardBuyMap()).catch((err:string) => console.log(err));
   }, []);
 
   return (
@@ -41,7 +41,6 @@ function App(): JSX.Element {
       <Route path="/addPost" element={<AddPost />} />
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/:idPost" element={<PostPage />} />
-      <Route path="/map" element={<MapClir />} />
       <Route path="/enti" element={<EntiList />} />
     </Routes>
   );
