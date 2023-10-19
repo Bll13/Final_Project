@@ -7,13 +7,13 @@ import { useAppDispatch } from '../../store/store';
 import './MapClir.css';
 import { addCardBuy } from './mapSlice';
 
-function MapClir(): JSX.Element {
+function MapEntity(): JSX.Element {
   const dispatch = useAppDispatch();
   const [adres, setAddress] = useState('');
   const [price, setPrice] = useState(0);
   const adresEntity = useSelector((store: RootState) => store.map.enti);
-  const adresCardBuy = useSelector((store: RootState) => store.map.card);
- 
+
+
   const geocode = async (adres: string): Promise<number[]> => {
     try {
       const response = await axios.get('https://geocode-maps.yandex.ru/1.x', {
@@ -92,26 +92,10 @@ function MapClir(): JSX.Element {
               key={el.id}
             />
           ))}
-
-          {adresCardBuy.map((el) => (
-            <Placemark
-              geometry={el.coordinates}
-              modules={['geoObject.addon.balloon']}
-              properties={{
-                balloonContent: `<div>
-                <div>Адрес:${el.content}</div>
-                <div>Имя:${el.name}</div>
-                <div>Стоит:${el.price}</div>
-                <a href='/posts/${el.id}'>Подробнее</a>
-                </div>`,
-              }}
-              key={el.id}
-            />
-          ))}
         </Map>
       </YMaps>
     </div>
   );
 }
 
-export default MapClir;
+export default MapEntity;

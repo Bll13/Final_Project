@@ -21,6 +21,7 @@ router.get('/entity', async (req, res) => {
       url: el.url,
       description: el.description,
     }))
+ 
     res.json({ message: 'ok', enti })
   } catch (error) {
     res.json({ messageError: error.message })
@@ -39,6 +40,7 @@ router.get('/entity', async (req, res) => {
         name: el['User.name'],
         price: el.price,
       }))
+      console.log(card, 'cardcardcardcard')
       res.json({ message: 'ok', card })
     } catch (error) {
       res.json({ messageError: error.message })

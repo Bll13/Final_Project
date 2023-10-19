@@ -9,6 +9,8 @@ export type User = {
   avatar: string;
 };
 
+export type UserId = User['id']
+
 export type UserWithoutId = {
   name: string;
   email: string;

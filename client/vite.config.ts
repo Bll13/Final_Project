@@ -11,7 +11,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-      '/img': {
+      '/img/': {
         target: SERVER_URL,
         changeOrigin: true,
         secure: false,

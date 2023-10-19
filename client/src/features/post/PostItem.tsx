@@ -25,7 +25,7 @@ function PostItem({ post }: { post: PostBuy }): JSX.Element {
         )}
 
         <img
-          src={post.photo}
+          src={post?.Photos[0].url}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>

@@ -90,7 +90,7 @@ router.get('/verification', async (req, res) => {
       })
       res.status(201).json({message: 'ok', user})
     } else {
-      res.status(403).json({ message: 'не в сети' })
+      res.status(403).json({ message: '' })
     }
   } catch ({ message }) {
     res.status(500).json({ message })
