@@ -4,7 +4,6 @@ import authSlice from '../features/authc/authSlice';
 import postSlice from '../features/post/postSlice';
 import mapSlice from '../features/Map/mapSlice';
 
-
 const store = configureStore({
   reducer: {
     auth: authSlice,

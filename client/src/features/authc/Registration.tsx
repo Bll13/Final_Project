@@ -28,7 +28,7 @@ function Registration(): JSX.Element {
   const addUser: SubmitHandler<UserWithoutId> = (data) => {
     if (data.password === data.passwordtwo) {
       dispatch(registgation(data));
-      nav('/');
+      nav('/posts');
     } else {
       dispatch(messageErr());
     }

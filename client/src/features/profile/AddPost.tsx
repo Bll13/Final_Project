@@ -7,19 +7,15 @@ import axios from 'axios';
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import './AddPost.css';
-
-
-const product = {
-  href: '#',
-  breadcrumbs: [
-    { id: 1, name: 'На главную', href: '/' },
-    { id: 2, name: 'Выйти', href: '#' },
-  ],
-};
+import NavBar from '../post/NavBar';
 
 function AddPost(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
+  
+  console.log(user);
+  
+  
 
   const categoryInput = useRef<HTMLSelectElement>(null);
   const adresInput = useRef<HTMLInputElement>(null);
@@ -46,10 +42,9 @@ function AddPost(): JSX.Element {
     }
   };
 
+  
 
-  //
-
-  async  function postUpd(e: React.FormEvent<HTMLFormElement>): Promise<void> {
+  async function postUpd(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
 
     if (
@@ -68,7 +63,8 @@ function AddPost(): JSX.Element {
       const obm = obmInput.current.value;
 
       const formData = new FormData();
-
+   
+   
       for (const key in url) {
         formData.append('url', url[key]);
       }
@@ -78,54 +74,17 @@ function AddPost(): JSX.Element {
       formData.append('ves', ves);
       formData.append('price', price);
       formData.append('obm', obm);
-
- 
-        const coordinates = await geocode(adres);
-        formData.append('adresCod', `${coordinates}`);
-        dispatch(addPost(formData)).catch((err) =>
-        console.log(err),
-      );
-      
-      
-      };
- 
      
+      const coordinates = await geocode(adres);
+      formData.append('adresCod', `${coordinates}`);
+      dispatch(addPost(formData)).catch((err) => console.log(err));
     }
-
-
-  
+  }
 
   return (
     <form onSubmit={postUpd}>
       <div className="space-y-12 bg-green-700">
-        <div className="mx-auto flex max-w-2xl justify-end lg:max-w-full lg:px-8">
-          <nav aria-label="Breadcrumb">
-            <ol
-              role="list"
-              className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
-            >
-              {product.breadcrumbs.map((breadcrumb) => (
-                <li key={breadcrumb.id}>
-                  <div className="flex items-center">
-                    <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-200">
-                      {breadcrumb.name}
-                    </a>
-                    <svg
-                      width={16}
-                      height={20}
-                      viewBox="0 0 16 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      className="h-5 w-4 text-gray-300"
-                    >
-                      <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                    </svg>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </nav>
-        </div>
+        <NavBar />
         <div className="ml-10 mt-2 flex justify-center h-30 w-80 rounded-lg border border-dashed border-gray-200/25 px-6 py-10">
           <div className=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="col-span-full">

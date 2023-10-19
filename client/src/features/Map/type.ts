@@ -7,7 +7,7 @@ export type MapsEntity = {
   inn: number;
   ogrn:number;
   adres:string;
-  adresCod:string;
+  adresCod:number[];
   url:string;
   description:string;
 };

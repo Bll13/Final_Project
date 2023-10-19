@@ -5,7 +5,7 @@ const { User, Role, Entity, Car } = require('../../db/models')
 router.post('/reg', async (req, res) => {
   try {
     const { name, password, email, phoneNumber, idRole, avatar } = req.body
-    console.log( name, password, email, phoneNumber, idRole, avatar );
+    console.log(name, password, email, phoneNumber, idRole, avatar)
     if (name && password && email && phoneNumber && idRole) {
       const user = await User.findOne({ where: { email } })
       if (!user) {
@@ -45,10 +45,8 @@ router.post('/reg', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { password, email } = req.body
-    console.log(password, email, '------123----')
     if (password && email) {
       let user = await User.findOne({ where: { email } })
-      console.log(user)
       if (user && (await bcrypt.compare(password, user.password))) {
         user = await User.findOne({
           where: { email },
@@ -70,7 +68,6 @@ router.post('/login', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ messageError: error.message })
-
   }
 })
 router.get('/logout', (req, res) => {
@@ -82,6 +79,7 @@ router.get('/logout', (req, res) => {
     res.clearCookie('user_sid').json({ message: 'Успешный выход' })
   })
 })
+
 router.get('/verification', async (req, res) => {
   try {
     const { userId } = req.session
@@ -90,7 +88,9 @@ router.get('/verification', async (req, res) => {
         where: { id: userId },
         attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
       })
-      res.status(201).json(user)
+     
+      res.status(201).json({message: 'ok', user})
+     
     } else {
       res.status(403).json({ message: '' })
     }

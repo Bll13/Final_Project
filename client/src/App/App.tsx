@@ -1,22 +1,26 @@
-import React, { useEffect } from 'react';
 import './App.css';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
+import { visualPost } from '../features/post/postSlice';
+import { useAppDispatch } from '../store/store';
+import { verification } from '../features/authc/authSlice';
 
 import Registration from '../features/authc/Registration';
 import Login from '../features/authc/Login';
 import MainPage from '../features/mainPage/MainPage';
 import Profile from '../features/profile/Profile';
-import { verification } from '../features/authc/authSlice';
-import { useAppDispatch } from '../store/store';
+
 import AddPost from '../features/profile/AddPost';
 import PostList from '../features/post/PostList';
 import PostPage from '../features/post/PostPage';
 import MapClir from '../features/Map/MapClir';
-import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
-import { visualPost } from '../features/post/postSlice';
 
 
-//comment
+import EntiList from '../features/post/EntiList';
+
+
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -38,6 +42,7 @@ function App(): JSX.Element {
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/:idPost" element={<PostPage />} />
       <Route path="/map" element={<MapClir />} />
+      <Route path="/enti" element={<EntiList />} />
     </Routes>
   );
 }
