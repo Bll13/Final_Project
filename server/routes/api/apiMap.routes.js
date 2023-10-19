@@ -21,7 +21,7 @@ router.get('/entity', async (req, res) => {
       url: el.url,
       description: el.description,
     }))
- 
+
     res.json({ message: 'ok', enti })
   } catch (error) {
     res.json({ messageError: error.message })
