@@ -1,10 +1,9 @@
-import React from 'react';
 
+import React from 'react';
 import './MainPage.css';
 
 function MainPage(): JSX.Element {
   const links = [{ name: 'Войти', href: '/log' }];
-
   return (
     <div className="mainPage">
       <div className="textInfo relative isolate overflow-hidden  py-24 sm:py-32">
