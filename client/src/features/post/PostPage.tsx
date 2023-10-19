@@ -13,6 +13,7 @@ function PostPage(): JSX.Element {
   const [view, setView] = useState(false);
 
   const posts = useSelector((store: RootState) => store.posts.posts);
+  
   let post;
   if (posts.length > 0) {
     post = posts.find((el: PostBuy) => el.id === Number(idPost));

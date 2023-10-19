@@ -5,7 +5,6 @@ import postSlice from '../features/post/postSlice';
 import mapSlice from '../features/Map/mapSlice';
 import { useDispatch } from 'react-redux';
 
-
 const store = configureStore({
   reducer: {
     auth: authSlice,

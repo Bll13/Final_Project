@@ -1,5 +1,5 @@
 require('dotenv').config()
-require('@babel/register')
+// require('@babel/register')
 const path = require('path')
 const morgan = require('morgan')
 const express = require('express')
