@@ -1,9 +1,11 @@
 const router = require('express').Router()
-const { CardBuy } = require('../../db/models')
+const { CardBuy, Photo } = require('../../db/models')
 
 router.get('/', async (req, res) => {
   try {
-    const posts = await CardBuy.findAll()
+    const posts = await CardBuy.findAll({
+      include: { model: Photo },
+    })
     res.status(200).json({ message: 'ok', posts })
   } catch ({ message }) {
     res.status(500).json({ message: 'error' })

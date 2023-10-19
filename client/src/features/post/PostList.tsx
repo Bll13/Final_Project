@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import './Post.css'
 
 import PostItem from './PostItem';
+import MapCarb from '../Map/MapCarb';
 const product = {
   href: '#',
   breadcrumbs: [
@@ -19,6 +21,8 @@ function PostList(): JSX.Element {
 
   if (select === '' && !money) {
     posts = useSelector((store: RootState) => store.posts.posts);
+
+    
     newPosts = [...posts].sort((a, b) => a.price - b.price);
   } else if (select === '' && money) {
     newPosts = useSelector((store: RootState) =>
@@ -31,6 +35,9 @@ function PostList(): JSX.Element {
   }
 
   return (
+
+
+  <>
     <div>
       <nav aria-label="Breadcrumb">
         <ol
@@ -58,6 +65,7 @@ function PostList(): JSX.Element {
           ))}
         </ol>
       </nav>
+      <div className='divMapCard'><div ><MapCarb/></div></div>
       <div className="MainContainer">
         <div className="inputContainer">
           <div className="mt-2 mt-3">
@@ -104,6 +112,7 @@ function PostList(): JSX.Element {
         }
       </div>
     </div>
+    </>
   );
 }
 

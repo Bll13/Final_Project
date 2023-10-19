@@ -8,6 +8,12 @@ export type PostBuy = {
   category: string;
   status: boolean;
   obm: number;
+  Photos: Photo[];
+};
+export type Photo = {
+  id: number;
+  url: string;
+  cardBuyId: number;
 };
 
 export type PostBuyId = PostBuy['id'];

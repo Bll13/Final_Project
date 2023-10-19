@@ -8,6 +8,8 @@ export const loadPostFetch = async (): Promise<{ message: string; posts: PostBuy
     throw message;
   }
   const data = await res.json();
+
+  
   return data;
 };
 
