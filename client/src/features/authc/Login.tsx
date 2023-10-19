@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import openEye from './img/openEye.png';
 import closedEye from './img/closedEye.png';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../store/store';
+import{ RootState, useAppDispatch } from '../../store/store';
 
 function Login(): JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
