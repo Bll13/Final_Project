@@ -9,13 +9,15 @@ export const registgation = createAsyncThunk('auth/registration', (obj: UserWith
 );
 export const verification = createAsyncThunk('auth/verification', () => api.verificationFetch());
 export const loginThunk = createAsyncThunk('auth/login', (obj: UserLogin) => api.loginFetch(obj));
-export const delThunk=createAsyncThunk('auth/logout', ()=> api.logoutFetch())
+export const delThunk = createAsyncThunk('auth/logout', () => api.logoutFetch());
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    messageErr:(state)=>{state.errUser='Пароли не совпадают'}
+    messageErr: (state) => {
+      state.errUser = 'Пароли не совпадают';
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -29,7 +31,7 @@ const authSlice = createSlice({
       })
 
       .addCase(verification.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.errUser = '';
       })
       .addCase(verification.rejected, (state, action) => {
@@ -41,8 +43,7 @@ const authSlice = createSlice({
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.errUser = action.error.message;
-      })
-  
+      });
   },
 });
 export const { messageErr } = authSlice.actions;

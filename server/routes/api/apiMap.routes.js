@@ -17,11 +17,11 @@ router.get('/entity', async (req, res) => {
       inn: el.inn,
       ogrn: el.ogrn,
       adres: el.adres,
-      adresCod: el.adresCod,
+      adresCod: el.adresCod.split(',').map((elm) => Number(elm)),
       url: el.url,
       description: el.description,
     }))
- 
+
     res.json({ message: 'ok', enti })
   } catch (error) {
     res.json({ messageError: error.message })

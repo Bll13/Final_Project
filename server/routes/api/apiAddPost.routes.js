@@ -4,9 +4,10 @@ const fileUpload = require('../../utils/fileUpload')
 
 router.post('/', async (req, res) => {
   try {
+    
     const { category, adres, ves, price, obm, adresCod } = req.body
     const file = req.files?.url
-
+  
     const arrUrl = await Promise.all(file.map((el) => fileUpload(el)))
 
     if (adres && price && ves && adresCod) {
@@ -20,7 +21,7 @@ router.post('/', async (req, res) => {
         obm,
         userId: req.session.userId,
       })
-
+console.log(post, '--------------9--------------');
       await Promise.all(
         arrUrl.map((el) => Photo.create({ url: el, cardBuyId: post.id })),
       )
