@@ -11,7 +11,11 @@ export const addCardBuy = createAsyncThunk('map/postCardBuy', (obj: Post) => api
 const mapSlice = createSlice({
   name: 'map',
   initialState,
-  reducers: {},
+  reducers: {
+    delMap : (state, action) => {state.card = state.card.filter((el) =>{
+    return  el.id !== action.payload})}
+    
+  },
   extraReducers: (builder) => {
     builder
 
@@ -38,5 +42,5 @@ const mapSlice = createSlice({
     });
   },
 });
-
+export const { delMap } = mapSlice.actions;
 export default mapSlice.reducer;

@@ -5,6 +5,7 @@ import { RootState, useAppDispatch } from '../../Store/store';
 
 import { delPost } from './postSlice';
 import { useSelector } from 'react-redux';
+import { delMap } from '../Map/mapSlice';
 
 function PostItem({ post }: { post: PostBuy }): JSX.Element {
   const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ function PostItem({ post }: { post: PostBuy }): JSX.Element {
 
   function deletePostItem(): void {
     dispatch(delPost(post.id)).catch((err: string) => console.log(err));
+    dispatch(delMap(post.id))
   }
 
   return (
