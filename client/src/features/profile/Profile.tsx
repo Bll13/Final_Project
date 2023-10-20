@@ -59,7 +59,7 @@ function Profile(): JSX.Element {
       return [];
     }
   };
-  //inn, ogrn, url, adres
+ 
 
   const dispatch = useAppDispatch();
   async function addEntri(e: React.FormEvent<HTMLFormElement>): Promise<void> {
@@ -101,7 +101,10 @@ function Profile(): JSX.Element {
               </p>
               <img src={users?.avatar} className="imgA object-cover object-center" />
               <div className="mt-10 lg:row-span-3 lg:mt-0">
-                <form onSubmit={addEntri}>
+                
+
+                {users?.idRole !== 2 ? (
+                  <form onSubmit={addEntri}>
                   <div className="inputPost mt-2">
                     <input
                       type="text"
@@ -157,11 +160,8 @@ function Profile(): JSX.Element {
                       onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
-                  <button type="submit">фыв</button>
+                  <button type="submit">кнопка для юрлица</button>
                 </form>
-
-                {users?.idRole !== 2 ? (
-                  <></>
                 ) : (
                   <form className="mt-40">
                     <a href="/addPost">
