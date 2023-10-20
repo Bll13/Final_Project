@@ -9,7 +9,6 @@ import './MapClir.css';
 
 function MapCarb(): JSX.Element {
   const adresCardBuy = useSelector((store: RootState) => store.map.card);
-  console.log(adresCardBuy, '---------');
   return (
     <div>
       <YMaps>

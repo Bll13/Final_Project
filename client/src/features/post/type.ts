@@ -9,6 +9,7 @@ export type PostBuy = {
   status: boolean;
   obm: number;
   Photos: Photo[];
+  adresCod: number[];
 };
 export type Photo = {
   id: number;

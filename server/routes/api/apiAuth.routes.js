@@ -5,7 +5,6 @@ const { User, Role, Entity, Car } = require('../../db/models')
 router.post('/reg', async (req, res) => {
   try {
     const { name, password, email, phoneNumber, idRole, avatar } = req.body
-    console.log(name, password, email, phoneNumber, idRole, avatar)
     if (name && password && email && phoneNumber && idRole) {
       const user = await User.findOne({ where: { email } })
       if (!user) {
@@ -70,6 +69,7 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ messageError: error.message })
   }
 })
+
 router.get('/logout', (req, res) => {
   req.session.destroy((error) => {
     if (error) {
@@ -88,9 +88,8 @@ router.get('/verification', async (req, res) => {
         where: { id: userId },
         attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
       })
-     
-      res.status(201).json({message: 'ok', user})
-     
+
+      res.status(201).json({ message: 'ok', user })
     } else {
       res.status(403).json({ message: '' })
     }
