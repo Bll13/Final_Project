@@ -1,4 +1,5 @@
 import React from 'react';
+import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import { RootState, useAppDispatch } from '../../Store/store';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -6,10 +7,12 @@ import { UserCircleIcon } from '@heroicons/react/20/solid';
 import { addEnti } from './addSlice';
 import axios from 'axios';
 import NavBar from '../post/NavBar';
+import MapCarb from '../Map/MapCarb';
+import { MapsCardBuy } from '../Map/type';
 
 function Profile(): JSX.Element {
   const users = useSelector((store: RootState) => store.auth.user);
-
+  const adresCardBuy = useSelector((store: RootState) => store.map.card);
   const [inn, setInn] = useState(0);
   const [ogrn, setOgrn] = useState(0);
   const [url, setUrl] = useState('');
@@ -73,7 +76,7 @@ function Profile(): JSX.Element {
   return (
     <div>
       <NavBar />
-      <div className="bg-green-700">
+      <div className="bg-green-700 asd" >
         <div className="pt-6 max-w-full">
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-full lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
@@ -96,8 +99,8 @@ function Profile(): JSX.Element {
                 {users?.name}
               </h4>
               <p className="mt-20 text-3xl tracking-tight text-gray-200">
-                {users?.phoneNumber} <br />
-                {users?.email}
+                Телефон: {users?.phoneNumber} <br />
+                Почта: {users?.email}
               </p>
               <img src={users?.avatar} className="imgA object-cover object-center" />
               <div className="mt-10 lg:row-span-3 lg:mt-0">
@@ -177,6 +180,25 @@ function Profile(): JSX.Element {
                 )}
               </div>
             </div>
+            <YMaps>
+        <Map defaultState={{ center: [59.938678, 30.314474], zoom: 10 }} width="100%" height="50vh">
+        {adresCardBuy.map((el: MapsCardBuy) => el.userId === users?.id ? (
+            <Placemark
+              geometry={el.coordinates}
+              modules={['geoObject.addon.balloon']}
+              properties={{
+                balloonContent: `<div>
+                <div>Адрес:${el.content}</div>
+                <div>Имя:${el.name}</div>
+                <div>Стоит:${el.price}</div>
+                <a href='/posts/${el.id}'>Подробнее</a>
+                </div>`,
+              }}
+              key={el.id}
+            />
+          ):'')}
+        </Map>
+      </YMaps>
           </div>
         </div>
       </div>

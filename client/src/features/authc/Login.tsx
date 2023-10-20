@@ -49,7 +49,7 @@ function Login(): JSX.Element {
             <div className="mt-2">
               <input
                 {...register('email', {
-                  required: 'Поле к обязательно к заполнению',
+                  required: 'Обязательное поле',
                   minLength: { value: 5, message: 'Невер почта' },
                 })}
                 type="email"
@@ -66,7 +66,7 @@ function Login(): JSX.Element {
               <input
                 type={password ? 'text' : 'password'}
                 {...register('password', {
-                  required: 'Поле к обязательно к заполнению',
+                  required: 'Обязательное поле',
                   minLength: { value: 5, message: 'Неверный пароль' },
                 })}
                 className=" bg-gray-300 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -91,14 +91,16 @@ function Login(): JSX.Element {
             >
               Войти
             </button>
-            <button
+        
+          </div>
+        </form>
+        <button
               type="submit"
               className="asd flex w-full justify-center rounded-md bg-green-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={()=>nav('/auth')}
             >
               Зарегистрироваться
             </button>
-          </div>
-        </form>
       </div>
     </div>
   );

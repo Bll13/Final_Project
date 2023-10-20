@@ -17,6 +17,7 @@ export type MapsCardBuy = {
   content: string;
   name: string;
   price:number;
+  userId:number;
 };
 export type Post = {
   adresCod: number[];

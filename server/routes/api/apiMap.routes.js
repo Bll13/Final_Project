@@ -39,6 +39,7 @@ router.get('/entity', async (req, res) => {
         id: el.id,
         name: el['User.name'],
         price: el.price,
+        userId:el.userId,
       }))
       res.json({ message: 'ok', card })
     } catch (error) {
