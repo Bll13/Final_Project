@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { addPost } from './addSlice';
-import type { RootState } from '../../store/store';
-import { useAppDispatch } from '../../store/store';
+import type { RootState } from '../../Store/store';
+import { useAppDispatch } from '../../Store/store';
 import axios from 'axios';
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
@@ -12,10 +12,11 @@ import NavBar from '../post/NavBar';
 function AddPost(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
+
   
 
   
-  
+
 
   const categoryInput = useRef<HTMLSelectElement>(null);
   const adresInput = useRef<HTMLInputElement>(null);
@@ -42,8 +43,6 @@ function AddPost(): JSX.Element {
     }
   };
 
-  
-
   async function postUpd(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
 
@@ -63,8 +62,7 @@ function AddPost(): JSX.Element {
       const obm = obmInput.current.value;
 
       const formData = new FormData();
-   
-   
+
       for (const key in url) {
         formData.append('url', url[key]);
       }
@@ -74,18 +72,18 @@ function AddPost(): JSX.Element {
       formData.append('ves', ves);
       formData.append('price', price);
       formData.append('obm', obm);
-     
+
       const coordinates = await geocode(adres);
       formData.append('adresCod', `${coordinates}`);
-      dispatch(addPost(formData)).catch((err) => console.log(err));
+      dispatch(addPost(formData)).catch((err: string) => console.log(err));
     }
   }
 
   return (
     <form onSubmit={postUpd}>
-      <div className="space-y-12 bg-green-700">
         <NavBar />
-        <div className="ml-10 mt-2 flex justify-center h-30 w-80 rounded-lg border border-dashed border-gray-200/25 px-6 py-10">
+      <div className="userTrash space-y-12 bg-green-700">
+        <div className="h-30 w-80 rounded-lg border border-dashed border-gray-200/25 px-6 py-10">
           <div className=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="col-span-full">
               <div className="mt-2 flex items-center gap-x-3">
@@ -102,13 +100,8 @@ function AddPost(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className=" ml-10 col-span-full">
-          <label
-            htmlFor="cover-photo"
-            className="block text-sm font-medium leading-6 text-gray-200"
-          >
-            <h2 className="text-base font-semibold leading-7 text-gray-200">Информация о мусоре</h2>
-          </label>
+          
+        <div className="infoTrash col-span-full">
           <div className="mt-2 flex justify-center h-30 w-80 rounded-lg border border-dashed border-gray-200/25 px-6 py-10">
             <div className="text-center">
               <div className="ml-10 border-b border-gray-900/10 pb-12">

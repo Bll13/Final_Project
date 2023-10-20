@@ -1,10 +1,15 @@
-import React from 'react';
 
+import React from 'react';
 import './MainPage.css';
+
 
 import NavBar from '../post/NavBar';
 
+
+
 function MainPage(): JSX.Element {
+
+
   return (
     <div className="mainPage">
       <div className="textInfo relative isolate overflow-hidden  py-24 sm:py-32">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { RootState } from '../../Store/store';
 import './Post.css';
 
 import PostItem from './PostItem';
@@ -8,6 +8,7 @@ import PostItem from './PostItem';
 import NavBar from './NavBar';
 
 import MapCarb from '../Map/MapCarb';
+import type { PostBuy } from './type';
 
 function PostList(): JSX.Element {
   const [select, setSelect] = useState('');
@@ -18,6 +19,7 @@ function PostList(): JSX.Element {
   if (select === '' && !money) {
     posts = useSelector((store: RootState) => store.posts.posts);
 
+
     posts = [...posts].sort((a, b) => a.price - b.price);
   } else if (select === '' && money) {
     posts = useSelector((store: RootState) =>
@@ -26,6 +28,7 @@ function PostList(): JSX.Element {
   } else if (select) {
     posts = useSelector((store: RootState) =>
       store.posts.posts.filter((el) => el.category === select && el.price > Number(money)),
+
     );
   }
 
@@ -79,7 +82,11 @@ function PostList(): JSX.Element {
                 </h2>
 
                 <div className="postsContainer mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+
                   {posts?.map((post) => <PostItem post={post} key={post.id} />)}
+
+               
+
                 </div>
               </div>
             </div>

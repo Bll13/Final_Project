@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { initCardBuyMap, initEntityMap } from '../features/Map/mapSlice';
 import { visualPost } from '../features/post/postSlice';
-import { useAppDispatch } from '../store/store';
+
 import { verification } from '../features/authc/authSlice';
 
 import Registration from '../features/authc/Registration';
@@ -17,15 +17,23 @@ import PostPage from '../features/post/PostPage';
 
 import EntiList from '../features/post/EntiList';
 
+
+import { useAppDispatch } from '../store/store';
+
+
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(verification()).catch((err) => console.log(err));
-    dispatch(visualPost()).catch((err) => console.log(err));
-    dispatch(initEntityMap()).catch((err) => console.log(err));
-    dispatch(initCardBuyMap()).catch((err) => console.log(err));
-    dispatch(initCardBuyMap()).catch((err) => console.log(err));
+
+
+   
+
+    dispatch(verification()).catch((err: string) => console.log(err));
+    dispatch(visualPost()).catch((err: string) => console.log(err));
+    dispatch(initEntityMap()).catch((err: string) => console.log(err));
+    dispatch(initCardBuyMap()).catch((err: string) => console.log(err));
+
   }, []);
 
   return (
@@ -40,12 +48,6 @@ function App(): JSX.Element {
       <Route path="/enti" element={<EntiList />} />
     </Routes>
   );
-
-
-
-
-
-
 
 
 

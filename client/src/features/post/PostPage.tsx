@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
-import { RootState } from '../../store/store';
+import { RootState } from '../../Store/store';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NavBar from './NavBar';
 import closedBtn from './img/closedBtn.png';
+import type { PostBuy } from './type';
 
 function PostPage(): JSX.Element {
   const { idPost } = useParams();
@@ -12,15 +13,19 @@ function PostPage(): JSX.Element {
   const [view, setView] = useState(false);
 
   const posts = useSelector((store: RootState) => store.posts.posts);
+
   const coordinates = useSelector((store: RootState) => store.map.card);
+
 
   let post;
   let photo;
   let coord;
   if (posts.length > 0) {
+
     post = posts.find((el) => el.id === Number(idPost));
     photo = post?.Photos[0].url;
     coord = post?.adresCod;
+
   }
 
   if (coordinates.length > 0) {

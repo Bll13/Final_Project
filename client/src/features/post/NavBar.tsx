@@ -22,6 +22,7 @@ function NavBar(): JSX.Element {
         role="list"
         className=" navBar mx-auto flex max-w-2xl items-center space-x-6 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
       >
+
         {!user && view && (
           <button
             className="mr-2 text-sm font-medium text-gray-200"
@@ -102,6 +103,8 @@ function NavBar(): JSX.Element {
             \ Выйти
           </button>
         )}
+
+
       </ol>
     </nav>
   );

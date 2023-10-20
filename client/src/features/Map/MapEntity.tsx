@@ -2,17 +2,17 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { type RootState } from '../../store/store';
-import { useAppDispatch } from '../../store/store';
+
 import './MapClir.css';
 import { addCardBuy } from './mapSlice';
+import { RootState, useAppDispatch } from '../../Store/store';
+import { MapsEntity } from './type';
 
 function MapEntity(): JSX.Element {
   const dispatch = useAppDispatch();
   const [adres, setAddress] = useState('');
   const [price, setPrice] = useState(0);
   const adresEntity = useSelector((store: RootState) => store.map.enti);
-
 
   const geocode = async (adres: string): Promise<number[]> => {
     try {
@@ -35,7 +35,9 @@ function MapEntity(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const coordinates = await geocode(adres);
-    dispatch(addCardBuy({ adres, adresCod: coordinates, price })).catch((err) => console.log(err));
+    dispatch(addCardBuy({ adres, adresCod: coordinates, price })).catch((err: string) =>
+      console.log(err),
+    );
   };
   const handleGeocode = (geocode: any) => {
     const coordinates = geocode.target.geometry.getCoordinates();
@@ -76,7 +78,7 @@ function MapEntity(): JSX.Element {
             }}
             onDragEnd={handleGeocode}
           />
-          {adresEntity.map((el) => (
+          {adresEntity.map((el: MapsEntity) => (
             <Placemark
               geometry={el.coordinates}
               options={{ preset: 'islands#redDotIcon', draggable: true }}
