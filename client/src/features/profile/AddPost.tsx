@@ -78,9 +78,9 @@ function AddPost(): JSX.Element {
 
   return (
     <form onSubmit={postUpd}>
-      <div className="space-y-12 bg-green-700">
         <NavBar />
-        <div className="ml-10 mt-2 flex justify-center h-30 w-80 rounded-lg border border-dashed border-gray-200/25 px-6 py-10">
+      <div className="userTrash space-y-12 bg-green-700">
+        <div className="h-30 w-80 rounded-lg border border-dashed border-gray-200/25 px-6 py-10">
           <div className=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="col-span-full">
               <div className="mt-2 flex items-center gap-x-3">
@@ -97,13 +97,8 @@ function AddPost(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className=" ml-10 col-span-full">
-          <label
-            htmlFor="cover-photo"
-            className="block text-sm font-medium leading-6 text-gray-200"
-          >
-            <h2 className="text-base font-semibold leading-7 text-gray-200">Информация о мусоре</h2>
-          </label>
+          
+        <div className="infoTrash col-span-full">
           <div className="mt-2 flex justify-center h-30 w-80 rounded-lg border border-dashed border-gray-200/25 px-6 py-10">
             <div className="text-center">
               <div className="ml-10 border-b border-gray-900/10 pb-12">
