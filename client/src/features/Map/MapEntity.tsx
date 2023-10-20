@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import './MapClir.css';
 import { addCardBuy } from './mapSlice';
-import { RootState, useAppDispatch } from '../../store/store';
+import { RootState, useAppDispatch } from '../../Store/store';
 import { MapsEntity } from './type';
 
 function MapEntity(): JSX.Element {
@@ -35,7 +35,9 @@ function MapEntity(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const coordinates = await geocode(adres);
-    dispatch(addCardBuy({ adres, adresCod: coordinates, price })).catch((err:string) => console.log(err));
+    dispatch(addCardBuy({ adres, adresCod: coordinates, price })).catch((err: string) =>
+      console.log(err),
+    );
   };
   const handleGeocode = (geocode: any) => {
     const coordinates = geocode.target.geometry.getCoordinates();
@@ -76,7 +78,7 @@ function MapEntity(): JSX.Element {
             }}
             onDragEnd={handleGeocode}
           />
-          {adresEntity.map((el:MapsEntity) => (
+          {adresEntity.map((el: MapsEntity) => (
             <Placemark
               geometry={el.coordinates}
               options={{ preset: 'islands#redDotIcon', draggable: true }}

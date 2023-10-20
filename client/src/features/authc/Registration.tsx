@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
-
 import './Auth.css';
 import { messageErr, registgation } from './authSlice';
 import type { UserWithoutId } from './type';
@@ -12,7 +11,7 @@ import openEye from './img/openEye.png';
 import closedEye from './img/closedEye.png';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { RootState, useAppDispatch } from '../../store/store';
+import { RootState, useAppDispatch } from '../../Store/store';
 
 function Registration(): JSX.Element {
   const [password, setPassword] = useState(false);

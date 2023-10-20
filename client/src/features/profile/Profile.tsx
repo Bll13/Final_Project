@@ -1,5 +1,5 @@
 import React from 'react';
-import { RootState, useAppDispatch } from '../../store/store';
+import { RootState, useAppDispatch } from '../../Store/store';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { UserCircleIcon } from '@heroicons/react/20/solid';
@@ -65,8 +65,8 @@ function Profile(): JSX.Element {
   async function addEntri(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     const coordinates = await geocode(adres);
-    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod: coordinates })).catch((err:string) =>
-      console.log(err),
+    dispatch(addEnti({ inn, ogrn, url, adres, description, adresCod: coordinates })).catch(
+      (err: string) => console.log(err),
     );
   }
 

@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { addPost } from './addSlice';
-import type { RootState } from '../../store/store';
-import { useAppDispatch } from '../../store/store';
+import type { RootState } from '../../Store/store';
+import { useAppDispatch } from '../../Store/store';
 import axios from 'axios';
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
@@ -12,10 +12,8 @@ import NavBar from '../post/NavBar';
 function AddPost(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
-  
+
   console.log(user);
-  
-  
 
   const categoryInput = useRef<HTMLSelectElement>(null);
   const adresInput = useRef<HTMLInputElement>(null);
@@ -42,8 +40,6 @@ function AddPost(): JSX.Element {
     }
   };
 
-  
-
   async function postUpd(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
 
@@ -63,8 +59,7 @@ function AddPost(): JSX.Element {
       const obm = obmInput.current.value;
 
       const formData = new FormData();
-   
-   
+
       for (const key in url) {
         formData.append('url', url[key]);
       }
@@ -74,10 +69,10 @@ function AddPost(): JSX.Element {
       formData.append('ves', ves);
       formData.append('price', price);
       formData.append('obm', obm);
-     
+
       const coordinates = await geocode(adres);
       formData.append('adresCod', `${coordinates}`);
-      dispatch(addPost(formData)).catch((err:string) => console.log(err));
+      dispatch(addPost(formData)).catch((err: string) => console.log(err));
     }
   }
 

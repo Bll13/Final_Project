@@ -1,7 +1,7 @@
 import React from 'react';
 import { PostBuy } from './type';
 import deleteBtn from './img/deleteBtn.png';
-import { RootState, useAppDispatch } from '../../store/store';
+import { RootState, useAppDispatch } from '../../Store/store';
 
 import { delPost } from './postSlice';
 import { useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ function PostItem({ post }: { post: PostBuy }): JSX.Element {
   const userId = useSelector((store: RootState) => store.auth.user?.id);
 
   function deletePostItem(): void {
-    dispatch(delPost(post.id)).catch((err:string) => console.log(err));
+    dispatch(delPost(post.id)).catch((err: string) => console.log(err));
   }
 
   return (

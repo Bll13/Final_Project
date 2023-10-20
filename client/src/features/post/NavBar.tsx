@@ -1,6 +1,6 @@
 import React from 'react';
 import { delThunk } from '../authc/authSlice';
-import { useAppDispatch } from '../../store/store';
+import { useAppDispatch } from '../../Store/store';
 import { useNavigate } from 'react-router';
 
 const product = {
@@ -12,7 +12,7 @@ function NavBar(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   function logOut() {
-    dispatch(delThunk()).catch((err:string) => console.log(err));
+    dispatch(delThunk()).catch((err: string) => console.log(err));
     navigate('/');
   }
 
@@ -41,11 +41,20 @@ function NavBar(): JSX.Element {
             </div>
           </li>
         ))}
-      
+
         <button className="mr-2 text-sm font-medium text-gray-200" type="button" onClick={logOut}>
           Выйти
         </button>
-        <button className="mr-2 text-sm font-medium text-gray-200" type="button" onClick={()=>{navigate('/enti')}}> \ Пункты</button>
+        <button
+          className="mr-2 text-sm font-medium text-gray-200"
+          type="button"
+          onClick={() => {
+            navigate('/enti');
+          }}
+        >
+          {' '}
+          \ Пункты
+        </button>
       </ol>
     </nav>
   );

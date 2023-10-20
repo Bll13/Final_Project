@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { RootState } from '../../Store/store';
 import './Post.css';
 
 import PostItem from './PostItem';
@@ -8,7 +8,7 @@ import PostItem from './PostItem';
 import NavBar from './NavBar';
 
 import MapCarb from '../Map/MapCarb';
-import type{ PostBuy } from './type';
+import type { PostBuy } from './type';
 
 function PostList(): JSX.Element {
   const [select, setSelect] = useState('');
@@ -19,7 +19,7 @@ function PostList(): JSX.Element {
   if (select === '' && !money) {
     posts = useSelector((store: RootState) => store.posts.posts);
 
-    newPosts = [...posts].sort((a:PostBuy, b:PostBuy) => a.price - b.price);
+    newPosts = [...posts].sort((a: PostBuy, b: PostBuy) => a.price - b.price);
   } else if (select === '' && money) {
     newPosts = useSelector((store: RootState) =>
       store.posts.posts.filter((el: PostBuy) => el.price > Number(money)),

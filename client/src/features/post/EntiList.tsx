@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import EntiItem from './EntiItem';
-import { RootState } from '../../store/store';
+import { RootState } from '../../Store/store';
 import { MapsEntity } from '../Map/type';
 
 function EntiList(): JSX.Element {

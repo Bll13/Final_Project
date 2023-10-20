@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
-import { RootState } from '../../store/store';
+import { RootState } from '../../Store/store';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NavBar from './NavBar';
@@ -13,7 +13,7 @@ function PostPage(): JSX.Element {
   const [view, setView] = useState(false);
 
   const posts = useSelector((store: RootState) => store.posts.posts);
-  
+
   let post;
   if (posts.length > 0) {
     post = posts.find((el: PostBuy) => el.id === Number(idPost));

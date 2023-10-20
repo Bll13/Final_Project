@@ -15,22 +15,17 @@ import AddPost from '../features/profile/AddPost';
 import PostList from '../features/post/PostList';
 import PostPage from '../features/post/PostPage';
 
-
-
 import EntiList from '../features/post/EntiList';
-import { useAppDispatch } from '../store/store';
-
-
-
+import { useAppDispatch } from '../Store/store';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(verification()).catch((err:string) => console.log(err));
-    dispatch(visualPost()).catch((err:string) => console.log(err));
-    dispatch(initEntityMap()).catch((err:string) => console.log(err));
-    dispatch(initCardBuyMap()).catch((err:string) => console.log(err));
+    dispatch(verification()).catch((err: string) => console.log(err));
+    dispatch(visualPost()).catch((err: string) => console.log(err));
+    dispatch(initEntityMap()).catch((err: string) => console.log(err));
+    dispatch(initCardBuyMap()).catch((err: string) => console.log(err));
   }, []);
 
   return (

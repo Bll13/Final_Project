@@ -2,11 +2,9 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-
-
 import './MapClir.css';
 import type { MapsCardBuy } from './type';
-import { RootState } from '../../store/store';
+import { RootState } from '../../Store/store';
 
 function MapCarb(): JSX.Element {
   const adresCardBuy = useSelector((store: RootState) => store.map.card);
