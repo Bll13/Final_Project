@@ -31,7 +31,10 @@
   width: 150px;
 }
 .postButtons {
-  justify-content: space-between;
+  justify-content: flex-end ;
+  z-index: 1;
+  
+
 }
 
 .PostBtn {
@@ -112,3 +115,6 @@
  color: blue;
 }
 
+.navBar{
+  margin-left: 50%;
+}

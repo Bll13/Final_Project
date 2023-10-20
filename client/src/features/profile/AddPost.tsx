@@ -13,7 +13,10 @@ function AddPost(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
 
-  console.log(user);
+  
+
+  
+
 
   const categoryInput = useRef<HTMLSelectElement>(null);
   const adresInput = useRef<HTMLInputElement>(null);
@@ -116,12 +119,12 @@ function AddPost(): JSX.Element {
                       ref={categoryInput}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-600 bg-green-100 shadow-sm ring-1 ring-inset ring-gray-500 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option value="ferrum">Металл</option>
-                      <option value="plastic">Пластик</option>
-                      <option value="paper">Бумага</option>
-                      <option value="wood">Дерево</option>
-                      <option value="glass">Стекло</option>
-                      <option value="organic">Органика</option>
+                      <option value="металл">Металл</option>
+                      <option value="пластик">Пластик</option>
+                      <option value="бумага">Бумага</option>
+                      <option value="дерево">Дерево</option>
+                      <option value="стекло">Стекло</option>
+                      <option value="органика">Органика</option>
                     </select>
                   </div>
                   <div className="col-span-full">

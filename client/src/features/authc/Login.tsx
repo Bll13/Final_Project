@@ -17,21 +17,22 @@ function Login(): JSX.Element {
   const nav = useNavigate();
   const [password, setPassword] = useState(false);
   const dispatch = useAppDispatch();
-  const err = useSelector((stor: RootState) => stor.auth.errUser);
+
+  const user = useSelector((store: RootState) => store.auth.user);
 
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm<UserLogin>({ mode: 'onBlur' });
+
   const onSubmit: SubmitHandler<UserLogin> = (data) => {
     dispatch(loginThunk(data));
-    nav('/posts');
+    if (user) {
+      nav('/posts');
+    }
   };
 
-  function who(): void {
-    nav('/auth');
-  }
   return (
     <div className="flex min-h-full    flex-col justify-center px-6 py-12 lg:px-8 bg-green-700 ">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -92,14 +93,12 @@ function Login(): JSX.Element {
             </button>
             <button
               type="submit"
-              onClick={who}
               className="asd flex w-full justify-center rounded-md bg-green-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Зарегистрироваться
             </button>
           </div>
         </form>
-        <h3>{err}</h3>
       </div>
     </div>
   );

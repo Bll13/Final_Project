@@ -14,7 +14,7 @@ export const registrationFetch = async (
     throw message;
   }
   const data = await res.json();
-  console.log(data);
+
   return data;
 };
 
@@ -30,7 +30,7 @@ export const loginFetch = async (obj: UserLogin): Promise<{ message: string; use
     throw message;
   }
   const data = await res.json();
-  console.log(data, 'asdasda');
+
   return data;
 };
 
@@ -41,14 +41,13 @@ export const logoutFetch = async (): Promise<{ message: string }> => {
     throw message;
   }
   const data = await res.json();
-  console.log(data, 'asdasda');
 
   return data;
 };
 
-export const verificationFetch = async (): Promise< {message: string, user: User }> => {
+export const verificationFetch = async (): Promise<{ message: string; user: User }> => {
   const res = await fetch('/api/auth/verification');
-  
+
   if (!res.ok) {
     const { message } = await res.json();
     throw message;

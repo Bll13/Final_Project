@@ -59,7 +59,7 @@ function Profile(): JSX.Element {
       return [];
     }
   };
- 
+
 
   const dispatch = useAppDispatch();
   async function addEntri(e: React.FormEvent<HTMLFormElement>): Promise<void> {

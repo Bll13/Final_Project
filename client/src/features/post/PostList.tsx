@@ -14,19 +14,21 @@ function PostList(): JSX.Element {
   const [select, setSelect] = useState('');
   const [money, setMoney] = useState<string>('');
   let posts;
-  let newPosts;
+ 
 
   if (select === '' && !money) {
     posts = useSelector((store: RootState) => store.posts.posts);
 
-    newPosts = [...posts].sort((a: PostBuy, b: PostBuy) => a.price - b.price);
+
+    posts = [...posts].sort((a, b) => a.price - b.price);
   } else if (select === '' && money) {
-    newPosts = useSelector((store: RootState) =>
-      store.posts.posts.filter((el: PostBuy) => el.price > Number(money)),
+    posts = useSelector((store: RootState) =>
+      store.posts.posts.filter((el) => el.price > Number(money)),
     );
   } else if (select) {
-    newPosts = useSelector((store: RootState) =>
-      store.posts.posts.filter((el: PostBuy) => el.category === select && el.price > Number(money)),
+    posts = useSelector((store: RootState) =>
+      store.posts.posts.filter((el) => el.category === select && el.price > Number(money)),
+
     );
   }
 
@@ -80,7 +82,11 @@ function PostList(): JSX.Element {
                 </h2>
 
                 <div className="postsContainer mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                  {newPosts?.map((post: PostBuy) => <PostItem post={post} key={post.id} />)}
+
+                  {posts?.map((post) => <PostItem post={post} key={post.id} />)}
+
+               
+
                 </div>
               </div>
             </div>

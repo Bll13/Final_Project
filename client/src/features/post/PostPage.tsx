@@ -14,16 +14,22 @@ function PostPage(): JSX.Element {
 
   const posts = useSelector((store: RootState) => store.posts.posts);
 
+  const coordinates = useSelector((store: RootState) => store.map.card);
+
+
   let post;
+  let photo;
+  let coord;
   if (posts.length > 0) {
-    post = posts.find((el: PostBuy) => el.id === Number(idPost));
+
+    post = posts.find((el) => el.id === Number(idPost));
+    photo = post?.Photos[0].url;
+    coord = post?.adresCod;
+
   }
 
-  let coord;
-  const coordinats = useSelector((store: RootState) => store.map.card);
-
-  if (coordinats.length > 0) {
-    coord = coordinats[Number(idPost)].coordinates;
+  if (coordinates.length > 0) {
+    coord = coordinates.find((el) => el.id === Number(idPost))?.coordinates;
   }
 
   return (
@@ -67,39 +73,36 @@ function PostPage(): JSX.Element {
             <div key={post?.id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img
-                  src={post?.photo}
+                  src={photo}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
               </div>
               <div className="mt-4 flex justify-between">
-                <div>
-                  <h3 className="text-sm text-gray-200">
-                    <p>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {post?.category}
-                    </p>
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-200">{post?.obm}</p>
-                </div>
-                <p className="text-sm font-medium text-gray-200">{post?.ves}</p>
+                <div></div>
+
+                <button
+                  type="button"
+                  className="mr-2 text-sm font-medium text-gray-200"
+                  onClick={() => navigate('/posts')}
+                >
+                  \ Вернуться к объявлениям
+                </button>
+                <button
+                  type="button"
+                  className="mr-2 text-sm font-medium text-gray-200"
+                  onClick={() => setView((prev) => !prev)}
+                >
+                  \ Показать на карте
+                </button>
               </div>
             </div>
-            <div className="postButtons">
-              <button
-                type="button"
-                className="text-sm text-gray-200"
-                onClick={() => setView((prev) => !prev)}
-              >
-                Показать на карте
-              </button>
 
-              <button
-                type="button"
-                className="text-sm text-gray-200"
-                onClick={() => navigate('/posts')}
-              >
-                Вернуться к объявлениям
-              </button>
+            <div className="postButtons">
+              <p className="mr-2 text-sm font-medium text-gray-200">
+                \ Категория: {post?.category}
+              </p>
+              <p className="text-sm font-medium text-gray-200">\ Объем: {post?.obm}</p>
+              <p className="text-sm font-medium text-gray-200">\ Масса: {post?.ves}</p>
             </div>
           </div>
         </div>
