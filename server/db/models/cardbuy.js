@@ -9,13 +9,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   CardBuy.init(
     {
-    
       adres: {
-        
         type: DataTypes.STRING,
       },
       adresCod: {
-        
         type: DataTypes.STRING,
       },
       userId: {

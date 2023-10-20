@@ -18,7 +18,7 @@ function MapCarb(): JSX.Element {
               draggable: true,
             }}
           />
-          {adresCardBuy.map((el: MapsCardBuy) => (
+          {adresCardBuy.map((el: MapsCardBuy) =>(
             <Placemark
               geometry={el.coordinates}
               modules={['geoObject.addon.balloon']}
@@ -26,7 +26,7 @@ function MapCarb(): JSX.Element {
                 balloonContent: `<div>
                 <div>Адрес:${el.content}</div>
                 <div>Имя:${el.name}</div>
-                <div>Стоит:${el.price}</div>
+                <div>Стоимость:${el.price}</div>
                 <a href='/posts/${el.id}'>Подробнее</a>
                 </div>`,
               }}

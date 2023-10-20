@@ -28,18 +28,6 @@ function NavBar(): JSX.Element {
             className="mr-2 text-sm font-medium text-gray-200"
             type="button"
             onClick={() => {
-              navigate('/auth');
-              setView(false);
-            }}
-          >
-            \ Регистрация
-          </button>
-        )}
-        {!user && view && (
-          <button
-            className="mr-2 text-sm font-medium text-gray-200"
-            type="button"
-            onClick={() => {
               navigate('/log');
               setView(false);
             }}

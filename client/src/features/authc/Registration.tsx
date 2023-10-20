@@ -51,7 +51,7 @@ function Registration(): JSX.Element {
             <div className="mt-2">
               <input
                 {...register('name', {
-                  required: 'Поле к обязательно к заполнению',
+                  required: 'Обязательное поле',
                   minLength: { value: 1, message: 'Нужно больше 1 символов' },
                 })}
                 className="bg-gray-300 block w-full rounded-md  border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -66,7 +66,7 @@ function Registration(): JSX.Element {
             <div className="mt-2">
               <input
                 {...register('email', {
-                  required: 'Поле к обязательно к заполнению',
+                  required: 'Обязательное поле',
                 })}
                 type="email"
                 className="bg-gray-300  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -80,7 +80,7 @@ function Registration(): JSX.Element {
               <input
                 type={password ? 'text' : 'password'}
                 {...register('password', {
-                  required: 'Поле к обязательно к заполнению',
+                  required: 'Обязательное поле',
                   minLength: { value: 5, message: 'Пароль должен быть больше 5 символов' },
                 })}
                 className="inputPasswo bg-gray-300  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -96,13 +96,13 @@ function Registration(): JSX.Element {
             </div>
             <div> {errors?.password && <p>{errors?.password?.message || 'Error!'}</p>}</div>
             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-200">
-              Повтарите пароль
+            Повторите пароль
             </label>
             <div className="inputPassword dav">
               <input
                 type={passworda ? 'text' : 'password'}
                 {...register('passwordtwo', {
-                  required: 'Поле к обязательно к заполнению',
+                  required: 'Обязательное поле',
                   minLength: { value: 5, message: 'Пароль должен быть больше 5 символов' },
                 })}
                 className="inputPasswo bg-gray-300  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -117,7 +117,7 @@ function Registration(): JSX.Element {
               </p>
             </div>
             <div> {errors?.passwordtwo && <p>{errors?.passwordtwo?.message || 'Error!'}</p>}</div>
-            {error && <div className="form_message">{error}</div>}
+            {/* {error && <div className="form_message">{error}</div>} */}
             <div className="mt-2 dav"></div>
             <label className="block text-sm font-medium leading-6 text-gray-200">
               Кем являетесь
@@ -138,8 +138,8 @@ function Registration(): JSX.Element {
             <div>
               <input
                 {...register('phoneNumber', {
-                  required: 'Поле к обязательно к заполнению',
-                  minLength: { value: 11, message: 'Телефонный номер 11 символов, если с 8' },
+                  required: 'Обязательное поле',
+                  minLength: { value: 8, message: '' },
                 })}
                 className="bg-gray-300  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />

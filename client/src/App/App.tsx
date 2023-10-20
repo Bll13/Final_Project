@@ -19,6 +19,7 @@ import EntiList from '../features/post/EntiList';
 
 
 import { useAppDispatch } from '../store/store';
+import NotFound from '../features/NotFound';
 
 
 function App(): JSX.Element {
@@ -46,6 +47,7 @@ function App(): JSX.Element {
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/:idPost" element={<PostPage />} />
       <Route path="/enti" element={<EntiList />} />
+      <Route path="*" element={<NotFound/>} />
     </Routes>
   );
 
